@@ -11,7 +11,7 @@
 @implementation TBDHTTPRequest
 
 
-# pragma mark - Get Requests - Specialty
+# pragma mark - Get Requests - Specialty Object
 
 +(void) GetRequestForStringFromURL:(NSURL *)url CompletionHandler:(void (^)(NSString *response))handler {
 	
@@ -36,8 +36,7 @@
 	}];
 	
 }
-#pragma mark - Get Requests - Generic
-
+#pragma mark - Get Requests - Generic Data
 
 +(void) GetRequestForDataFromURL:(NSURL *)url CompletionHandler:(void (^)(NSData *data))handler {
 	NSHTTPURLResponse *responseCode = nil;
@@ -70,8 +69,6 @@
 	[request setURL:url];
 	return request;
 }
-
-
 
 
 @end

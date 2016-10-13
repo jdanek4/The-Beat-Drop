@@ -40,7 +40,8 @@
 	[TBDHTTPRequest GetRequestForImageFromURL:[NSURL URLWithString:@"https://upload.wikimedia.org/wikipedia/commons/c/c4/PM5544_with_non-PAL_signals.png"] CompletionHandler:^(UIImage *image) {
 		responseImage = image;
 	}];
-	XCTAssert(responseImage);
+	XCTAssert(responseImage.size.width > 0);
+
 }
 
 

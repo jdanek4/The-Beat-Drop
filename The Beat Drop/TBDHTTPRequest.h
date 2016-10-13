@@ -11,8 +11,16 @@
 
 @interface TBDHTTPRequest : NSObject
 
+/// Sends HTTP Get request and parses response to an NSString
 +(void) GetRequestForStringFromURL:(NSURL *)url CompletionHandler:(void (^)(NSString *response))handler;
+
+/// Sends HTTP Get request and parses response to an NSDictionary
 +(void) GetRequestForJSONFromURL:(NSURL *)url CompletionHandler:(void (^)(NSDictionary *response))handler;
+
+/// Sends HTTP Get request and parses response to a UIImage
 +(void) GetRequestForImageFromURL:(NSURL *)url CompletionHandler:(void (^)(UIImage *image))handler;
+
+/// Sends HTTP Get request and returns unaltered NSData
++(void) GetRequestForDataFromURL:(NSURL *)url CompletionHandler:(void (^)(NSData *data))handler;
 
 @end
