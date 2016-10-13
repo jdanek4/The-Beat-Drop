@@ -11,48 +11,35 @@
 @implementation TBDHTTPRequest
 
 
-# pragma mark - Get Requests
+# pragma mark - Get Requests - Specialty
 
 +(void) GetRequestForStringFromURL:(NSURL *)url CompletionHandler:(void (^)(NSString *response))handler {
 	
-	NSHTTPURLResponse *responseCode = nil;
-	NSMutableURLRequest *request = [self buildGetURLRequestForURL:url];
+	[self GetRequestForDataFromURL:url CompletionHandler:^(NSData *data) {
+		handler([[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+	}];
 	
-	NSError *error = [[NSError alloc] init];
-	
-	#pragma clang diagnostic push
-	#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-	NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
-	#pragma clang diagnostic pop
-	
-	if([responseCode statusCode] != 200){
-		handler(NULL);
-		return;
-	}
-	
-	handler([[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
 }
 
 +(void) GetRequestForJSONFromURL:(NSURL *)url CompletionHandler:(void (^)(NSDictionary *response))handler {
-	NSHTTPURLResponse *responseCode = nil;
-	NSMutableURLRequest *request = [self buildGetURLRequestForURL:url];
+
+	[self GetRequestForDataFromURL:url CompletionHandler:^(NSData *data) {
+		handler([NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil]);
+	}];
 	
-	NSError *error = [[NSError alloc] init];
-	
-	#pragma clang diagnostic push
-	#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-	NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&responseCode error:&error];
-	#pragma clang diagnostic pop
-	
-	if([responseCode statusCode] != 200){
-		handler(NULL);
-		return;
-	}
-	
-	handler([NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingMutableContainers error:nil]);
 }
 
 +(void) GetRequestForImageFromURL:(NSURL *)url CompletionHandler:(void (^)(UIImage *image))handler {
+	
+	[self GetRequestForDataFromURL:url CompletionHandler:^(NSData *data) {
+		handler([UIImage imageWithData:data]);
+	}];
+	
+}
+#pragma mark - Get Requests - Generic
+
+
++(void) GetRequestForDataFromURL:(NSURL *)url CompletionHandler:(void (^)(NSData *data))handler {
 	NSHTTPURLResponse *responseCode = nil;
 	NSMutableURLRequest *request = [self buildGetURLRequestForURL:url];
 	
@@ -64,13 +51,16 @@
 	#pragma clang diagnostic pop
 	
 	if([responseCode statusCode] != 200){
+		
 		handler(NULL);
 		return;
+		
+	}else {
+		
+		handler(responseData);
+		
 	}
-	
-	handler([UIImage imageWithData:responseData]);
 }
-
 
 #pragma mark - Object Builder
 
