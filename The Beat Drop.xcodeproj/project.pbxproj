@@ -13,10 +13,14 @@
 		AB64F7361DAE8512002BC4F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB64F7341DAE8512002BC4F0 /* Main.storyboard */; };
 		AB64F7381DAE8512002BC4F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB64F7371DAE8512002BC4F0 /* Assets.xcassets */; };
 		AB64F73B1DAE8512002BC4F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB64F7391DAE8512002BC4F0 /* LaunchScreen.storyboard */; };
-		AB64F7461DAE8512002BC4F0 /* The_Beat_DropTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB64F7451DAE8512002BC4F0 /* The_Beat_DropTests.m */; };
 		AB64F7511DAE8512002BC4F0 /* The_Beat_DropUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB64F7501DAE8512002BC4F0 /* The_Beat_DropUITests.m */; };
 		AB64F7611DAE852D002BC4F0 /* TBDHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB64F7601DAE852D002BC4F0 /* TBDHTTPRequest.m */; };
 		AB64F7641DAE8694002BC4F0 /* WebRequestTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB64F7631DAE8694002BC4F0 /* WebRequestTest.m */; };
+		AB91318E1DB2FB820038BCAF /* TBDTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = AB91318D1DB2FB820038BCAF /* TBDTrack.m */; };
+		AB9131931DB2FFEB0038BCAF /* TBDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9131921DB2FFEB0038BCAF /* TBDUser.m */; };
+		AB9131981DB320C90038BCAF /* NSDictionary+ExceptionHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9131971DB320C90038BCAF /* NSDictionary+ExceptionHandling.m */; };
+		ABB9F5F21DB00D42008A2A00 /* TBDSoundcloud.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB9F5F11DB00D42008A2A00 /* TBDSoundcloud.m */; };
+		ABB9F5F41DB00D7C008A2A00 /* SoundcloudTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB9F5F31DB00D7C008A2A00 /* SoundcloudTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +52,6 @@
 		AB64F73A1DAE8512002BC4F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB64F73C1DAE8512002BC4F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB64F7411DAE8512002BC4F0 /* The Beat DropTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "The Beat DropTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB64F7451DAE8512002BC4F0 /* The_Beat_DropTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = The_Beat_DropTests.m; sourceTree = "<group>"; };
 		AB64F7471DAE8512002BC4F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB64F74C1DAE8512002BC4F0 /* The Beat DropUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "The Beat DropUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB64F7501DAE8512002BC4F0 /* The_Beat_DropUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = The_Beat_DropUITests.m; sourceTree = "<group>"; };
@@ -56,6 +59,15 @@
 		AB64F75F1DAE852D002BC4F0 /* TBDHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDHTTPRequest.h; sourceTree = "<group>"; };
 		AB64F7601DAE852D002BC4F0 /* TBDHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDHTTPRequest.m; sourceTree = "<group>"; };
 		AB64F7631DAE8694002BC4F0 /* WebRequestTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebRequestTest.m; sourceTree = "<group>"; };
+		AB91318C1DB2FB820038BCAF /* TBDTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDTrack.h; sourceTree = "<group>"; };
+		AB91318D1DB2FB820038BCAF /* TBDTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDTrack.m; sourceTree = "<group>"; };
+		AB9131911DB2FFEB0038BCAF /* TBDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDUser.h; sourceTree = "<group>"; };
+		AB9131921DB2FFEB0038BCAF /* TBDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDUser.m; sourceTree = "<group>"; };
+		AB9131961DB320C90038BCAF /* NSDictionary+ExceptionHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ExceptionHandling.h"; sourceTree = "<group>"; };
+		AB9131971DB320C90038BCAF /* NSDictionary+ExceptionHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ExceptionHandling.m"; sourceTree = "<group>"; };
+		ABB9F5F01DB00D42008A2A00 /* TBDSoundcloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDSoundcloud.h; sourceTree = "<group>"; };
+		ABB9F5F11DB00D42008A2A00 /* TBDSoundcloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDSoundcloud.m; sourceTree = "<group>"; };
+		ABB9F5F31DB00D7C008A2A00 /* SoundcloudTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundcloudTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +118,9 @@
 		AB64F72A1DAE8512002BC4F0 /* The Beat Drop */ = {
 			isa = PBXGroup;
 			children = (
+				AB9131941DB320780038BCAF /* Extensions */,
+				AB9131861DB2FB510038BCAF /* Custom Objects */,
+				ABB9F5EF1DB00D23008A2A00 /* Soundcloud API */,
 				AB64F75E1DAE8517002BC4F0 /* Web API */,
 				AB64F72E1DAE8512002BC4F0 /* AppDelegate.h */,
 				AB64F72F1DAE8512002BC4F0 /* AppDelegate.m */,
@@ -131,8 +146,8 @@
 		AB64F7441DAE8512002BC4F0 /* The Beat DropTests */ = {
 			isa = PBXGroup;
 			children = (
-				AB64F7451DAE8512002BC4F0 /* The_Beat_DropTests.m */,
 				AB64F7631DAE8694002BC4F0 /* WebRequestTest.m */,
+				ABB9F5F31DB00D7C008A2A00 /* SoundcloudTest.m */,
 				AB64F7471DAE8512002BC4F0 /* Info.plist */,
 			);
 			path = "The Beat DropTests";
@@ -154,6 +169,59 @@
 				AB64F7601DAE852D002BC4F0 /* TBDHTTPRequest.m */,
 			);
 			name = "Web API";
+			sourceTree = "<group>";
+		};
+		AB9131861DB2FB510038BCAF /* Custom Objects */ = {
+			isa = PBXGroup;
+			children = (
+				AB9131901DB2FFE30038BCAF /* User */,
+				AB9131881DB2FB650038BCAF /* Track */,
+			);
+			name = "Custom Objects";
+			sourceTree = "<group>";
+		};
+		AB9131881DB2FB650038BCAF /* Track */ = {
+			isa = PBXGroup;
+			children = (
+				AB91318C1DB2FB820038BCAF /* TBDTrack.h */,
+				AB91318D1DB2FB820038BCAF /* TBDTrack.m */,
+			);
+			name = Track;
+			sourceTree = "<group>";
+		};
+		AB9131901DB2FFE30038BCAF /* User */ = {
+			isa = PBXGroup;
+			children = (
+				AB9131911DB2FFEB0038BCAF /* TBDUser.h */,
+				AB9131921DB2FFEB0038BCAF /* TBDUser.m */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		AB9131941DB320780038BCAF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AB9131951DB3207F0038BCAF /* NSDictionary */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		AB9131951DB3207F0038BCAF /* NSDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				AB9131961DB320C90038BCAF /* NSDictionary+ExceptionHandling.h */,
+				AB9131971DB320C90038BCAF /* NSDictionary+ExceptionHandling.m */,
+			);
+			name = NSDictionary;
+			sourceTree = "<group>";
+		};
+		ABB9F5EF1DB00D23008A2A00 /* Soundcloud API */ = {
+			isa = PBXGroup;
+			children = (
+				ABB9F5F01DB00D42008A2A00 /* TBDSoundcloud.h */,
+				ABB9F5F11DB00D42008A2A00 /* TBDSoundcloud.m */,
+			);
+			name = "Soundcloud API";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,10 +360,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB9131931DB2FFEB0038BCAF /* TBDUser.m in Sources */,
 				AB64F7331DAE8512002BC4F0 /* ViewController.m in Sources */,
+				AB9131981DB320C90038BCAF /* NSDictionary+ExceptionHandling.m in Sources */,
 				AB64F7301DAE8512002BC4F0 /* AppDelegate.m in Sources */,
 				AB64F7611DAE852D002BC4F0 /* TBDHTTPRequest.m in Sources */,
 				AB64F72D1DAE8512002BC4F0 /* main.m in Sources */,
+				AB91318E1DB2FB820038BCAF /* TBDTrack.m in Sources */,
+				ABB9F5F21DB00D42008A2A00 /* TBDSoundcloud.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB64F7641DAE8694002BC4F0 /* WebRequestTest.m in Sources */,
-				AB64F7461DAE8512002BC4F0 /* The_Beat_DropTests.m in Sources */,
+				ABB9F5F41DB00D7C008A2A00 /* SoundcloudTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +606,7 @@
 				AB64F7571DAE8512002BC4F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AB64F7581DAE8512002BC4F0 /* Build configuration list for PBXNativeTarget "The Beat DropTests" */ = {
 			isa = XCConfigurationList;
@@ -542,6 +615,7 @@
 				AB64F75A1DAE8512002BC4F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AB64F75B1DAE8512002BC4F0 /* Build configuration list for PBXNativeTarget "The Beat DropUITests" */ = {
 			isa = XCConfigurationList;
@@ -550,6 +624,7 @@
 				AB64F75D1DAE8512002BC4F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
