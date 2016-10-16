@@ -24,7 +24,7 @@
 +(void) GetRequestForJSONFromURL:(NSURL *)url CompletionHandler:(void (^)(NSDictionary *response))handler {
 
 	[self GetRequestForDataFromURL:url CompletionHandler:^(NSData *data) {
-		handler([NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil]);
+		handler([NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil]);
 	}];
 	
 }
