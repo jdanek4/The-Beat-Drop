@@ -16,7 +16,13 @@
 
 @implementation WebRequestTest
 
+-(void) setUp {
+	[super setUp];
+}
 
+-(void) tearDown {
+	[super tearDown];
+}
 
 - (void)testHTTPGetRequestForString {
 	__block NSString *responseString;
@@ -37,7 +43,7 @@
 - (void)testHTTPGetRequestForImage {
 	__block UIImage *responseImage = nil;
 	
-	[TBDHTTPRequest GetRequestForImageFromURL:[NSURL URLWithString:@"https://upload.wikimedia.org/wikipedia/commons/c/c4/PM5544_with_non-PAL_signals.png"] CompletionHandler:^(UIImage *image) {
+	[TBDHTTPRequest GetRequestForImageFromURL:[NSURL URLWithString:@"http://feelgrafix.com/data/landscape/landscape-10.jpg"] CompletionHandler:^(UIImage *image) {
 		responseImage = image;
 	}];
 	XCTAssert(responseImage.size.width > 0);
