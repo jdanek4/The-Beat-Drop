@@ -118,7 +118,7 @@
 		AB64F72A1DAE8512002BC4F0 /* The Beat Drop */ = {
 			isa = PBXGroup;
 			children = (
-				AB9131941DB320780038BCAF /* Extensions */,
+				AB9131941DB320780038BCAF /* Categories */,
 				AB9131861DB2FB510038BCAF /* Custom Objects */,
 				ABB9F5EF1DB00D23008A2A00 /* Soundcloud API */,
 				AB64F75E1DAE8517002BC4F0 /* Web API */,
@@ -198,12 +198,12 @@
 			name = User;
 			sourceTree = "<group>";
 		};
-		AB9131941DB320780038BCAF /* Extensions */ = {
+		AB9131941DB320780038BCAF /* Categories */ = {
 			isa = PBXGroup;
 			children = (
 				AB9131951DB3207F0038BCAF /* NSDictionary */,
 			);
-			name = Extensions;
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		AB9131951DB3207F0038BCAF /* NSDictionary */ = {
