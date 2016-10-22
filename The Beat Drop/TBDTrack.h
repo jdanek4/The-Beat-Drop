@@ -21,4 +21,7 @@
 @property(assign, nonatomic) double		dropTime;
 @property(assign, nonatomic) BOOL		streamable;
 
+
++(id) trackFromDictionary:(NSDictionary *)trackInfo;
+
 @end

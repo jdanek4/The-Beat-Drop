@@ -11,8 +11,6 @@
 @interface TBDUser : NSObject
 
 @property (strong, nonatomic) NSString*	name;
-
-
 @property (assign, nonatomic) unsigned int userID;
 
 

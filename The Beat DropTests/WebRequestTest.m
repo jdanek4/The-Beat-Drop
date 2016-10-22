@@ -43,7 +43,7 @@
 - (void)testHTTPGetRequestForImage {
 	__block UIImage *responseImage = nil;
 	
-	[TBDHTTPRequest GetRequestForImageFromURL:[NSURL URLWithString:@"http://feelgrafix.com/data/landscape/landscape-10.jpg"] CompletionHandler:^(UIImage *image) {
+	[TBDHTTPRequest GetRequestForImageFromURL:[NSURL URLWithString:@"http://digital-photography-school.com/wp-content/uploads/flickr/2746960560_8711acfc60_o.jpg"] CompletionHandler:^(UIImage *image) {
 		responseImage = image;
 	}];
 	XCTAssert(responseImage.size.width > 0);
