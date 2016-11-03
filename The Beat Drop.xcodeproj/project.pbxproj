@@ -16,6 +16,7 @@
 		AB64F7511DAE8512002BC4F0 /* The_Beat_DropUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB64F7501DAE8512002BC4F0 /* The_Beat_DropUITests.m */; };
 		AB64F7611DAE852D002BC4F0 /* TBDHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB64F7601DAE852D002BC4F0 /* TBDHTTPRequest.m */; };
 		AB64F7641DAE8694002BC4F0 /* WebRequestTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB64F7631DAE8694002BC4F0 /* WebRequestTest.m */; };
+		AB8D75041DCADDE2005EA6CB /* TBDFileIO.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8D75031DCADDE2005EA6CB /* TBDFileIO.m */; };
 		AB91318E1DB2FB820038BCAF /* TBDTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = AB91318D1DB2FB820038BCAF /* TBDTrack.m */; };
 		AB9131931DB2FFEB0038BCAF /* TBDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9131921DB2FFEB0038BCAF /* TBDUser.m */; };
 		AB9131981DB320C90038BCAF /* NSDictionary+ExceptionHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9131971DB320C90038BCAF /* NSDictionary+ExceptionHandling.m */; };
@@ -64,6 +65,8 @@
 		AB64F75F1DAE852D002BC4F0 /* TBDHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDHTTPRequest.h; sourceTree = "<group>"; };
 		AB64F7601DAE852D002BC4F0 /* TBDHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDHTTPRequest.m; sourceTree = "<group>"; };
 		AB64F7631DAE8694002BC4F0 /* WebRequestTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebRequestTest.m; sourceTree = "<group>"; };
+		AB8D75021DCADDE2005EA6CB /* TBDFileIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDFileIO.h; sourceTree = "<group>"; };
+		AB8D75031DCADDE2005EA6CB /* TBDFileIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDFileIO.m; sourceTree = "<group>"; };
 		AB91318C1DB2FB820038BCAF /* TBDTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDTrack.h; sourceTree = "<group>"; };
 		AB91318D1DB2FB820038BCAF /* TBDTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDTrack.m; sourceTree = "<group>"; };
 		AB9131911DB2FFEB0038BCAF /* TBDUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDUser.h; sourceTree = "<group>"; };
@@ -133,6 +136,7 @@
 		AB64F72A1DAE8512002BC4F0 /* The Beat Drop */ = {
 			isa = PBXGroup;
 			children = (
+				AB8D75011DCADDB3005EA6CB /* File Manager */,
 				ABACEF0E1DB7B45400417E5F /* Audio Player */,
 				AB9131941DB320780038BCAF /* Categories */,
 				AB9131861DB2FB510038BCAF /* Data Obejcts */,
@@ -186,6 +190,15 @@
 				AB64F7601DAE852D002BC4F0 /* TBDHTTPRequest.m */,
 			);
 			name = "Web API";
+			sourceTree = "<group>";
+		};
+		AB8D75011DCADDB3005EA6CB /* File Manager */ = {
+			isa = PBXGroup;
+			children = (
+				AB8D75021DCADDE2005EA6CB /* TBDFileIO.h */,
+				AB8D75031DCADDE2005EA6CB /* TBDFileIO.m */,
+			);
+			name = "File Manager";
 			sourceTree = "<group>";
 		};
 		AB9131861DB2FB510038BCAF /* Data Obejcts */ = {
@@ -435,6 +448,7 @@
 			files = (
 				AB9131931DB2FFEB0038BCAF /* TBDUser.m in Sources */,
 				AB64F7331DAE8512002BC4F0 /* ViewController.m in Sources */,
+				AB8D75041DCADDE2005EA6CB /* TBDFileIO.m in Sources */,
 				ABAE26421DBB00A400AC83DF /* DropPlayerViewController.m in Sources */,
 				ABAE263F1DBB008300AC83DF /* SoundcloudSearchTableViewController.m in Sources */,
 				ABAE26461DBB117D00AC83DF /* SplashScreenViewController.m in Sources */,

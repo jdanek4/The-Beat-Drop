@@ -10,4 +10,6 @@
 
 @interface SoundcloudSearchTableViewController : UITableViewController
 
+- (IBAction)cancelButtonPressed:(id)sender;
+
 @end

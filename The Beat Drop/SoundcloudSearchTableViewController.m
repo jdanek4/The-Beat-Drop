@@ -95,4 +95,7 @@
 }
 */
 
+- (IBAction)cancelButtonPressed:(id)sender {
+	[self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
 @end
