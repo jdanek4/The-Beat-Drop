@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,12 +16,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="atn-vd-3zG">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="atn-vd-3zG" customClass="TBDTrackTableViewCell">
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="atn-vd-3zG" id="uTt-9J-wNC">
                                     <frame key="frameInset" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pdM-6M-jKS">
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="pdM-6M-jKS" secondAttribute="height" multiplier="1:1" id="Ef4-qE-pFn"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="pdM-6M-jKS" firstAttribute="leading" secondItem="uTt-9J-wNC" secondAttribute="leading" id="0lp-DJ-Gar"/>
+                                        <constraint firstItem="pdM-6M-jKS" firstAttribute="top" secondItem="uTt-9J-wNC" secondAttribute="top" id="gIl-g3-0G5"/>
+                                        <constraint firstAttribute="bottom" secondItem="pdM-6M-jKS" secondAttribute="bottom" constant="-1.5" id="kml-G7-hpg"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="sCA-I9-IZS" kind="presentation" identifier="PlayDrop" id="TUd-9H-aeA"/>
@@ -55,7 +68,6 @@
                     <view key="view" contentMode="scaleToFill" id="fyW-dU-ISh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <segue destination="PD2-Dp-Vc4" kind="presentation" identifier="SplashScreenDone" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="flh-ky-uJ2"/>
@@ -92,7 +104,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableFooterView" contentMode="redraw" id="kZW-Tf-ITB">
-                            <rect key="frame" x="0.0" y="136" width="336" height="44"/>
+                            <rect key="frame" x="0.0" y="136" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
@@ -179,6 +191,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="kCv-w8-mAg"/>
+        <segue reference="TUd-9H-aeA"/>
     </inferredMetricsTieBreakers>
 </document>
