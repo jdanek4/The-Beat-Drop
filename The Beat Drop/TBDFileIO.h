@@ -10,7 +10,7 @@
 
 @interface TBDFileIO : NSObject
 
-+(void)saveObjectsToFile:(NSArray *)objects;
-+(NSArray *)getObjectsFromFile;
++(void)SaveObjectsToFile:(NSArray *)objects;
++(NSArray *)GetObjectsFromFile;
 
 @end

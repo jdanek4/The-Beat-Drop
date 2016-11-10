@@ -17,7 +17,7 @@ NSString *const kTrackDropTimeKey = @"DropTime";
 NSString *const kTrackIDKey = @"TrackID";
 
 
-+(void)saveObjectsToFile:(NSArray *)objects{
++(void)SaveObjectsToFile:(NSArray *)objects{
 	
 	//Create an NSArray of NSDictionaries
 	NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -44,7 +44,7 @@ NSString *const kTrackIDKey = @"TrackID";
 	
 }
 
-+(NSArray *)getObjectsFromFile {
++(NSArray *)GetObjectsFromFile {
 	
 	// Load PList File into NSArray and iterate through array gathering data of each track
 	NSArray *dropFileArray = [NSKeyedUnarchiver unarchiveObjectWithFile:[TBDFileIO getFilePath]];
