@@ -7,6 +7,7 @@
 //
 
 #import "SplashScreenViewController.h"
+#import "TBDFileIO.h"
 
 @interface SplashScreenViewController ()
 
@@ -20,12 +21,17 @@
 	
 	// Play Logo Animation
 	
-	// Check to ensure all songs are playable
-	
+	if([TBDFileIO DoesFileExist]){
+		// Ensure Playability of Saved Songs
+		
+	}else {
+		// First time opening app or never added a track to their list
+		
+	}
 }
 
 -(void) viewDidAppear:(BOOL)animated{
-	[self performSegueWithIdentifier:@"SplashScreenDone" sender:self];
+	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,8 +42,12 @@
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	
+}
+
+-(void) advanceToHomeTableView {
+	[self performSegueWithIdentifier:@"SplashScreenDone" sender:self];
 }
 
 

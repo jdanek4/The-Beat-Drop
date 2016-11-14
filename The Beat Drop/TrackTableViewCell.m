@@ -1,14 +1,14 @@
 //
-//  TBDTrackTableViewCell.m
+//  TrackTableViewCell.m
 //  The Beat Drop
 //
-//  Created by Jonathan Danek on 11/3/16.
+//  Created by Jonathan Danek on 11/10/16.
 //  Copyright © 2016 Jonathan Danek. All rights reserved.
 //
 
-#import "TBDTrackTableViewCell.h"
+#import "TrackTableViewCell.h"
 
-@implementation TBDTrackTableViewCell
+@implementation TrackTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
