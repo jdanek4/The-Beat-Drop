@@ -10,7 +10,11 @@
 
 @interface TBDFileIO : NSObject
 
-+(void)SaveObjectsToFile:(NSArray *)objects;
-+(NSArray *)GetObjectsFromFile;
+/// Saves NSArray of TBDTracks to PList File
++(void) SaveObjectsToFile:(NSArray *)objects;
+/// Returns NSArray of TBDTracks loaded from Plist File
++(NSArray *) GetObjectsFromFile;
+/// Checks if Data File Exists. Doesn't exist if first opening of app.
++(bool) DoesFileExist;
 
 @end

@@ -65,7 +65,8 @@ NSString *const kTrackIDKey = @"TrackID";
 		
 		[TBDSoundcloud GetTrackInfoFromID:[[dropData objectForKey:kTrackIDKey] intValue] OnCompletion:^(TBDTrack *track) {
 			if([TBDFileIO  testSavedData:dropData ToSoundcloudData:track]){
-				// Data Parity Consistent - Add Track to Array
+				// Data Parity Consistent - Add Track to Array after setting Drop Time of Saved Value
+				[track setDropTime:temp.dropTime];
 				[trackArray addObject:track];
 			}else {
 				// Data Parity Non-Consistent - Set Drop Time to -1.0f and add track to array.
@@ -84,13 +85,15 @@ NSString *const kTrackIDKey = @"TrackID";
 	return trackArray;
 }
 
++(BOOL) DoesFileExist {
+	return [[NSFileManager defaultManager] fileExistsAtPath:[TBDFileIO getFilePath]];
+}
 
 +(NSString *)getFilePath{
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
 														 NSUserDomainMask, YES);
 	NSString *path = [paths objectAtIndex:0];
 	path = [path stringByAppendingPathComponent:@"drops.plist"];
-	NSLog(@"%@", path);
 	return path;
 }
 

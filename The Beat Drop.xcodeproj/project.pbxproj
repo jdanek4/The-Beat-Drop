@@ -19,12 +19,12 @@
 		AB91318E1DB2FB820038BCAF /* TBDTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = AB91318D1DB2FB820038BCAF /* TBDTrack.m */; };
 		AB9131931DB2FFEB0038BCAF /* TBDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9131921DB2FFEB0038BCAF /* TBDUser.m */; };
 		AB9131981DB320C90038BCAF /* NSDictionary+ExceptionHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9131971DB320C90038BCAF /* NSDictionary+ExceptionHandling.m */; };
+		AB9386111DD4ED6E003A87C4 /* TrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9386101DD4ED6E003A87C4 /* TrackTableViewCell.m */; };
 		ABACEF111DB7B49000417E5F /* TBDAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = ABACEF101DB7B49000417E5F /* TBDAudioPlayer.m */; };
 		ABAE263C1DBB006F00AC83DF /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAE263B1DBB006F00AC83DF /* HomeTableViewController.m */; };
 		ABAE263F1DBB008300AC83DF /* SoundcloudSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAE263E1DBB008300AC83DF /* SoundcloudSearchTableViewController.m */; };
 		ABAE26421DBB00A400AC83DF /* DropPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAE26411DBB00A400AC83DF /* DropPlayerViewController.m */; };
 		ABAE26461DBB117D00AC83DF /* SplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAE26451DBB117D00AC83DF /* SplashScreenViewController.m */; };
-		ABB583BC1DCBD136001A4806 /* TBDTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB583BB1DCBD136001A4806 /* TBDTrackTableViewCell.m */; };
 		ABB9F5F21DB00D42008A2A00 /* TBDSoundcloud.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB9F5F11DB00D42008A2A00 /* TBDSoundcloud.m */; };
 		ABB9F5F41DB00D7C008A2A00 /* SoundcloudTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB9F5F31DB00D7C008A2A00 /* SoundcloudTest.m */; };
 /* End PBXBuildFile section */
@@ -71,6 +71,8 @@
 		AB9131921DB2FFEB0038BCAF /* TBDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDUser.m; sourceTree = "<group>"; };
 		AB9131961DB320C90038BCAF /* NSDictionary+ExceptionHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ExceptionHandling.h"; sourceTree = "<group>"; };
 		AB9131971DB320C90038BCAF /* NSDictionary+ExceptionHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ExceptionHandling.m"; sourceTree = "<group>"; };
+		AB93860F1DD4ED6E003A87C4 /* TrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackTableViewCell.h; sourceTree = "<group>"; };
+		AB9386101DD4ED6E003A87C4 /* TrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackTableViewCell.m; sourceTree = "<group>"; };
 		ABACEF0F1DB7B49000417E5F /* TBDAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDAudioPlayer.h; sourceTree = "<group>"; };
 		ABACEF101DB7B49000417E5F /* TBDAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDAudioPlayer.m; sourceTree = "<group>"; };
 		ABAE263A1DBB006F00AC83DF /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
@@ -81,8 +83,6 @@
 		ABAE26411DBB00A400AC83DF /* DropPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropPlayerViewController.m; sourceTree = "<group>"; };
 		ABAE26441DBB117D00AC83DF /* SplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenViewController.h; sourceTree = "<group>"; };
 		ABAE26451DBB117D00AC83DF /* SplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenViewController.m; sourceTree = "<group>"; };
-		ABB583BA1DCBD136001A4806 /* TBDTrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDTrackTableViewCell.h; sourceTree = "<group>"; };
-		ABB583BB1DCBD136001A4806 /* TBDTrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDTrackTableViewCell.m; sourceTree = "<group>"; };
 		ABB9F5F01DB00D42008A2A00 /* TBDSoundcloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDSoundcloud.h; sourceTree = "<group>"; };
 		ABB9F5F11DB00D42008A2A00 /* TBDSoundcloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDSoundcloud.m; sourceTree = "<group>"; };
 		ABB9F5F31DB00D7C008A2A00 /* SoundcloudTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundcloudTest.m; sourceTree = "<group>"; };
@@ -255,7 +255,7 @@
 		ABAE26361DBAFFA500AC83DF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				ABB583B61DCBD10B001A4806 /* TBDSongTableViewCell */,
+				ABB583B61DCBD10B001A4806 /* TrackTableViewCell */,
 				ABAE26431DBB117200AC83DF /* Splash Screen */,
 				ABAE26371DBB001100AC83DF /* Home */,
 				ABAE26391DBB003D00AC83DF /* DropPlayer */,
@@ -300,13 +300,13 @@
 			name = "Splash Screen";
 			sourceTree = "<group>";
 		};
-		ABB583B61DCBD10B001A4806 /* TBDSongTableViewCell */ = {
+		ABB583B61DCBD10B001A4806 /* TrackTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				ABB583BA1DCBD136001A4806 /* TBDTrackTableViewCell.h */,
-				ABB583BB1DCBD136001A4806 /* TBDTrackTableViewCell.m */,
+				AB93860F1DD4ED6E003A87C4 /* TrackTableViewCell.h */,
+				AB9386101DD4ED6E003A87C4 /* TrackTableViewCell.m */,
 			);
-			name = TBDSongTableViewCell;
+			name = TrackTableViewCell;
 			sourceTree = "<group>";
 		};
 		ABB9F5EF1DB00D23008A2A00 /* Soundcloud API */ = {
@@ -455,8 +455,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB9131931DB2FFEB0038BCAF /* TBDUser.m in Sources */,
+				AB9386111DD4ED6E003A87C4 /* TrackTableViewCell.m in Sources */,
 				AB8D75041DCADDE2005EA6CB /* TBDFileIO.m in Sources */,
-				ABB583BC1DCBD136001A4806 /* TBDTrackTableViewCell.m in Sources */,
 				ABAE26421DBB00A400AC83DF /* DropPlayerViewController.m in Sources */,
 				ABAE263F1DBB008300AC83DF /* SoundcloudSearchTableViewController.m in Sources */,
 				ABAE26461DBB117D00AC83DF /* SplashScreenViewController.m in Sources */,
