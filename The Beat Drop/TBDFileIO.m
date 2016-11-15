@@ -61,7 +61,7 @@ NSString *const kTrackIDKey = @"TrackID";
 		
 		[trackArray addObject:temp];
 		
-		// Request Track from Soundcloud then verify saved data matches received data to ensure consistancy
+		// Request Track from Soundcloud and then verify saved data matches received data to ensure consistancy
 		
 		[TBDSoundcloud GetTrackInfoFromID:[[dropData objectForKey:kTrackIDKey] intValue] OnCompletion:^(TBDTrack *track) {
 			if([TBDFileIO  testSavedData:dropData ToSoundcloudData:track]){
@@ -71,7 +71,7 @@ NSString *const kTrackIDKey = @"TrackID";
 			}else {
 				// Data Parity Non-Consistent - Set Drop Time to -1.0f and add track to array.
 				// Setting Drop time to -1.0f will be used in the HomeTableViewController
-				// to alert user song will be unplayable and removed from list.
+				// to alert user their track will be unplayable and removed from list.
 				// -1.0f was used as drop time should never be -1.0f
 				
 				[track setDropTime:-1.0f];

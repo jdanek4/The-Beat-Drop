@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB0109421DDBAD4700D88D1F /* TrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0109401DDBAD4700D88D1F /* TrackTableViewCell.m */; };
+		AB0109431DDBAD4700D88D1F /* TrackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB0109411DDBAD4700D88D1F /* TrackTableViewCell.xib */; };
 		AB64F72D1DAE8512002BC4F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB64F72C1DAE8512002BC4F0 /* main.m */; };
 		AB64F7301DAE8512002BC4F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB64F72F1DAE8512002BC4F0 /* AppDelegate.m */; };
 		AB64F7361DAE8512002BC4F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB64F7341DAE8512002BC4F0 /* Main.storyboard */; };
@@ -19,7 +21,6 @@
 		AB91318E1DB2FB820038BCAF /* TBDTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = AB91318D1DB2FB820038BCAF /* TBDTrack.m */; };
 		AB9131931DB2FFEB0038BCAF /* TBDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9131921DB2FFEB0038BCAF /* TBDUser.m */; };
 		AB9131981DB320C90038BCAF /* NSDictionary+ExceptionHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9131971DB320C90038BCAF /* NSDictionary+ExceptionHandling.m */; };
-		AB9386111DD4ED6E003A87C4 /* TrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9386101DD4ED6E003A87C4 /* TrackTableViewCell.m */; };
 		ABACEF111DB7B49000417E5F /* TBDAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = ABACEF101DB7B49000417E5F /* TBDAudioPlayer.m */; };
 		ABAE263C1DBB006F00AC83DF /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAE263B1DBB006F00AC83DF /* HomeTableViewController.m */; };
 		ABAE263F1DBB008300AC83DF /* SoundcloudSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAE263E1DBB008300AC83DF /* SoundcloudSearchTableViewController.m */; };
@@ -47,6 +48,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB01093F1DDBAD4700D88D1F /* TrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackTableViewCell.h; sourceTree = "<group>"; };
+		AB0109401DDBAD4700D88D1F /* TrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackTableViewCell.m; sourceTree = "<group>"; };
+		AB0109411DDBAD4700D88D1F /* TrackTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackTableViewCell.xib; sourceTree = "<group>"; };
 		AB64F7281DAE8512002BC4F0 /* The Beat Drop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Beat Drop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB64F72C1DAE8512002BC4F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AB64F72E1DAE8512002BC4F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -71,8 +75,6 @@
 		AB9131921DB2FFEB0038BCAF /* TBDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDUser.m; sourceTree = "<group>"; };
 		AB9131961DB320C90038BCAF /* NSDictionary+ExceptionHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ExceptionHandling.h"; sourceTree = "<group>"; };
 		AB9131971DB320C90038BCAF /* NSDictionary+ExceptionHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ExceptionHandling.m"; sourceTree = "<group>"; };
-		AB93860F1DD4ED6E003A87C4 /* TrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackTableViewCell.h; sourceTree = "<group>"; };
-		AB9386101DD4ED6E003A87C4 /* TrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackTableViewCell.m; sourceTree = "<group>"; };
 		ABACEF0F1DB7B49000417E5F /* TBDAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDAudioPlayer.h; sourceTree = "<group>"; };
 		ABACEF101DB7B49000417E5F /* TBDAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDAudioPlayer.m; sourceTree = "<group>"; };
 		ABAE263A1DBB006F00AC83DF /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
@@ -303,8 +305,9 @@
 		ABB583B61DCBD10B001A4806 /* TrackTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				AB93860F1DD4ED6E003A87C4 /* TrackTableViewCell.h */,
-				AB9386101DD4ED6E003A87C4 /* TrackTableViewCell.m */,
+				AB01093F1DDBAD4700D88D1F /* TrackTableViewCell.h */,
+				AB0109401DDBAD4700D88D1F /* TrackTableViewCell.m */,
+				AB0109411DDBAD4700D88D1F /* TrackTableViewCell.xib */,
 			);
 			name = TrackTableViewCell;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				AB64F73B1DAE8512002BC4F0 /* LaunchScreen.storyboard in Resources */,
 				AB64F7381DAE8512002BC4F0 /* Assets.xcassets in Resources */,
 				AB64F7361DAE8512002BC4F0 /* Main.storyboard in Resources */,
+				AB0109431DDBAD4700D88D1F /* TrackTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,7 +459,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB9131931DB2FFEB0038BCAF /* TBDUser.m in Sources */,
-				AB9386111DD4ED6E003A87C4 /* TrackTableViewCell.m in Sources */,
+				AB0109421DDBAD4700D88D1F /* TrackTableViewCell.m in Sources */,
 				AB8D75041DCADDE2005EA6CB /* TBDFileIO.m in Sources */,
 				ABAE26421DBB00A400AC83DF /* DropPlayerViewController.m in Sources */,
 				ABAE263F1DBB008300AC83DF /* SoundcloudSearchTableViewController.m in Sources */,
