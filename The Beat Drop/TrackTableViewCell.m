@@ -2,7 +2,7 @@
 //  TrackTableViewCell.m
 //  The Beat Drop
 //
-//  Created by Jonathan Danek on 11/10/16.
+//  Created by Jonathan Danek on 11/15/16.
 //  Copyright © 2016 Jonathan Danek. All rights reserved.
 //
 
