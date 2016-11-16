@@ -39,7 +39,9 @@ NSString *const kTrackIDKey = @"TrackID";
 	// Write NSArray of NSDictionaries to Disk
 	
 	if([data writeToFile:[TBDFileIO getFilePath] atomically:YES]){
-		NSLog(@"Successfully wrote data to file!");
+		// Successfuly wrote data to file
+	}else {
+		// Error writing data to file
 	}
 	
 }

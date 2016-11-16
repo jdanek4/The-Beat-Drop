@@ -7,6 +7,7 @@
 //
 
 #import "SplashScreenViewController.h"
+#import "HomeTableViewController.h"
 #import "TBDFileIO.h"
 
 @interface SplashScreenViewController ()
@@ -19,18 +20,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 	
-	// Play Logo Animation
 	
 	if([TBDFileIO DoesFileExist]){
 		// Ensure Playability of Saved Songs
-		
+		NSArray *tracks = [TBDFileIO GetObjectsFromFile];
+		[self performSelector:@selector(advanceToHomeTableViewWithArray:) withObject:tracks afterDelay:1.0f];
 	}else {
 		// First time opening app or never added a track to their list
-		
+		[self performSelector:@selector(advanceToHomeTableViewWithArray:) withObject:[NSArray array] afterDelay:1.0f];
 	}
 }
 
 -(void) viewDidAppear:(BOOL)animated{
+	// Play Logo Animation
+	
+	// Play Loading Animation
 	
 }
 
@@ -44,10 +48,19 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	
+	// Pass array of tracks retrieved from PList file
+	
+	if([segue.destinationViewController isKindOfClass:[UINavigationController class]]){
+		// Destination View Controller is the UINavigationController that controls the HomeTableViewController
+		HomeTableViewController *nextView = [segue.destinationViewController.childViewControllers objectAtIndex:0];
+		[nextView giveTrackData:sender];
+
+	}
+	
 }
 
--(void) advanceToHomeTableView {
-	[self performSegueWithIdentifier:@"SplashScreenDone" sender:self];
+-(void) advanceToHomeTableViewWithArray:(NSArray *)array {
+	[self performSegueWithIdentifier:@"SplashScreenDone" sender:array];
 }
 
 
