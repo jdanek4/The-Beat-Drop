@@ -22,6 +22,8 @@ NSString *const kSoundcloudKeySongStreamable = @"streamable";
 
 @implementation TBDTrack
 
+#pragma mark - Inits
+
 +(id) trackFromDictionary:(NSDictionary *)trackInfo {
 	
 	TBDTrack *track = [[TBDTrack alloc] init];
@@ -39,6 +41,12 @@ NSString *const kSoundcloudKeySongStreamable = @"streamable";
 
 	}
 	return track;
+}
+
+#pragma mark - Overrides
+
+-(NSString *) description {
+	return [NSString stringWithFormat:@"%@-%@", self.name, self.artist];
 }
 
 @end
