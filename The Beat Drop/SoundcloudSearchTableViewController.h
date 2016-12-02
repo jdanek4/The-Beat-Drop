@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SoundcloudSearchTableViewController : UITableViewController
+@interface SoundcloudSearchTableViewController : UITableViewController <UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
+
+@property (strong, nonatomic) UISearchController *searchController;
 
 - (IBAction)cancelButtonPressed:(id)sender;
 

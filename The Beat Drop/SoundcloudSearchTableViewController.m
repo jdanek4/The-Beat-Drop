@@ -7,16 +7,41 @@
 //
 
 #import "SoundcloudSearchTableViewController.h"
+#import "TBDTrack.h"
+#import "TrackTableViewCell.h"
+#import "TBDSoundcloud.h"
+#import "TBDHTTPRequest.h"
 
-@interface SoundcloudSearchTableViewController ()
+@interface SoundcloudSearchTableViewController (){
+	NSMutableArray *trackArray;
+}
 
 @end
+
+NSString *const cellIdentifier = @"trackCell";
 
 @implementation SoundcloudSearchTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+	
+	trackArray = [NSMutableArray array];
+
+	// Setup SearchController Object and Set User Interface settings
+	self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+	self.searchController.searchResultsUpdater = self;
+	self.searchController.searchBar.placeholder = nil;
+	[self.searchController.searchBar sizeToFit];
+	self.tableView.tableHeaderView = self.searchController.searchBar;
+	self.searchController.delegate = self;
+	self.searchController.dimsBackgroundDuringPresentation = YES;
+	self.searchController.searchBar.delegate = self;
+	self.definesPresentationContext = YES;
+
+	
+	// Register Custom TableViewCell to be used as Reuseable cell
+	[self.tableView registerNib:[UINib nibWithNibName:@"TrackTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
+	
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -32,68 +57,79 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+	return [trackArray count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
+	
+	TrackTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+	// Get Pointer for Track associated with Specific Cell
+	TBDTrack *track = [trackArray objectAtIndex:indexPath.row];
+	
+	// Set Cell's Labels and image to track data
+	cell.trackTitle.text = [track name];
+	cell.trackArtist.text = [track artist];
+	
+	// Request Track's artwork from soundcloud. Leave image blank until request returns a value
+	cell.trackArtwork.image = NULL;
+	
+	[TBDHTTPRequest GetRequestForImageFromURL:[track getSamllArtworkURL] CompletionHandler:^(UIImage *image) {
+		if(image.size.width > 0){
+			// Image received
+			cell.trackArtwork.image = image;
+		}else {
+			// Image not received
+			// Usually due to no artwork on soundcloud
+			// Set to TBD placeholder
+			
+		}
+	}];
+	
+	
+	return cell;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+#pragma mark - SearchBar
+
+-(void) updateSearchResultsForSearchController:(UISearchController *)searchController{
+	
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+-(void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+	NSLog(@"Searchbar: Search Button Clicked");
+	[self performSelectorInBackground:@selector(searchRequestWithKeyword:) withObject:[searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+-(void) searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+	NSLog(@"Searchbar: Text Did End Editing");
 }
-*/
 
-/*
+#pragma mark - Search Methods
+
+-(void) searchRequestWithKeyword:(NSString *)keyword {
+	[TBDSoundcloud GetSearchResultsForQuery:keyword OnCompletion:^(NSArray *array) {
+		[self performSelectorOnMainThread:@selector(updateTableDataWith:) withObject:array waitUntilDone:NO];
+	}];
+}
+
+#pragma mark - User Interface Updates
+
+-(void) updateTableDataWith:(NSArray *)newData {
+	// Replace Current Table Data with Newly Recived Search Data
+	trackArray = [newData mutableCopy];
+	
+	// Reload TableView will new Data
+	[self.tableView reloadData];
+	
+	// Dismiss Search Controller
+	self.searchController.active = false;
+}
+
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)cancelButtonPressed:(id)sender {
 	[self.navigationController dismissViewControllerAnimated:YES completion:nil];

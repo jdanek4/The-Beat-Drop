@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="atn-vd-3zG" id="uTt-9J-wNC">
-                                    <frame key="frameInset" width="375" height="43.5"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -90,20 +90,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableFooterView" contentMode="redraw" id="kZW-Tf-ITB">
-                            <rect key="frame" x="0.0" y="136" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="c3T-ER-jPb" id="Ayt-ee-xDb"/>
-                            </connections>
-                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="7oJ-ab-g24" customClass="TrackTableViewCell">
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7oJ-ab-g24" id="qVm-aH-5Mu">
-                                    <frame key="frameInset" width="375" height="43.5"/>
+                                    <frame key="frameInset" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -123,20 +115,8 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="Gcf-GF-XVX" id="C3a-6S-zcn"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m9i-9Y-RC8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="Gcf-GF-XVX">
-                    <connections>
-                        <outlet property="delegate" destination="c3T-ER-jPb" id="sPu-Gw-IZF"/>
-                        <outlet property="searchBar" destination="kZW-Tf-ITB" id="BSE-g0-i0k"/>
-                        <outlet property="searchContentsController" destination="c3T-ER-jPb" id="AYP-q2-fXa"/>
-                        <outlet property="searchResultsDataSource" destination="c3T-ER-jPb" id="hjH-e8-6nU"/>
-                        <outlet property="searchResultsDelegate" destination="c3T-ER-jPb" id="6LN-JQ-JXI"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2370" y="87"/>
         </scene>
@@ -178,6 +158,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="TUd-9H-aeA"/>
+        <segue reference="kCv-w8-mAg"/>
     </inferredMetricsTieBreakers>
 </document>
