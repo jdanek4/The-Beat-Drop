@@ -7,8 +7,13 @@
 //
 
 #import "HomeTableViewController.h"
+#import "TBDTrack.h"
+#import "TrackTableViewCell.h"
+#import "TBDHTTPRequest.h"
 
-@interface HomeTableViewController ()
+@interface HomeTableViewController (){
+	NSArray *trackArray;
+}
 
 @end
 
@@ -16,12 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	NSLog(@"test");
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	
+	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,24 +33,41 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return [trackArray count];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    TrackTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"trackCell" forIndexPath:indexPath];
+	
+	// Get Pointer for Track associated with Specific Cell
+	TBDTrack *track = [trackArray objectAtIndex:indexPath.row];
+	
+	// Set Cell's Labels and image to track data
+	cell.trackTitle.text = [track name];
+	cell.trackArtist.text = [track artist];
+	
+	// Request Track's artwork from soundcloud. Leave image blank until request returns a value
+	cell.trackArtwork.image = NULL;
+	[TBDHTTPRequest GetRequestForImageFromURL:[track artworkURL] CompletionHandler:^(UIImage *image) {
+		if(image.size.width > 0){
+			// Image received
+			cell.trackArtwork.image = image;
+		}else {
+			// Image not received
+			// Usually due to no artwork on soundcloud
+			// Set to placeholder image
+			
+		}
+	}];
+	
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -85,14 +103,20 @@
 }
 */
 
-/*
+
+
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
+#pragma mark - Data Interface
+
+-(void) giveTrackData:(NSArray *)tracks {
+	
+}
 
 @end

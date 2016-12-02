@@ -10,4 +10,6 @@
 
 @interface HomeTableViewController : UITableViewController
 
+-(void) giveTrackData:(NSArray *)tracks;
+
 @end
