@@ -24,4 +24,6 @@
 
 +(id) trackFromDictionary:(NSDictionary *)trackInfo;
 
+-(NSURL *) getSamllArtworkURL;
+
 @end

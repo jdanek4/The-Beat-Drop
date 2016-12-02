@@ -20,6 +20,11 @@ NSString *const kSoundcloudKeySongArtwork = @"artwork_url";
 NSString *const kSoundcloudKeySongDuration = @"duration";
 NSString *const kSoundcloudKeySongStreamable = @"streamable";
 
+// Soundcloud Image Values
+NSString *const kSoundcloudImageDefault = @"large";
+NSString *const kSoundcloudImageLarge = @"large";
+NSString *const kSoundcloudImageSmall = @"badge";
+
 @implementation TBDTrack
 
 #pragma mark - Inits
@@ -42,6 +47,14 @@ NSString *const kSoundcloudKeySongStreamable = @"streamable";
 	}
 	return track;
 }
+
+#pragma mark - Advanced Getters
+
+-(NSURL *) getSamllArtworkURL {
+	NSString *urlString = [[self.artworkURL absoluteString] stringByReplacingOccurrencesOfString:kSoundcloudImageDefault withString:kSoundcloudImageSmall];
+	return [NSURL URLWithString:urlString];
+}
+
 
 #pragma mark - Overrides
 

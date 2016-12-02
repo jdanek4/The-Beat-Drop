@@ -257,10 +257,10 @@
 		ABAE26361DBAFFA500AC83DF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				ABAE26391DBB003D00AC83DF /* DropPlayer */,
 				ABB583B61DCBD10B001A4806 /* TrackTableViewCell */,
 				ABAE26431DBB117200AC83DF /* Splash Screen */,
 				ABAE26371DBB001100AC83DF /* Home */,
-				ABAE26391DBB003D00AC83DF /* DropPlayer */,
 				ABAE26381DBB002300AC83DF /* SoundcloudSearch */,
 			);
 			name = "View Controllers";
