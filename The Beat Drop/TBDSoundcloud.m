@@ -17,11 +17,12 @@
 // Web Request Strings
 NSString *const kSoundcloudPrefix =				@"https://api.soundcloud.com/";
 NSString *const kSoundcloudSuffix =				@"?client_id=ef95044ef892046510fa005fad793c12";
-NSString *const kSoundcloudSearchLimit =		@"&limit=40";						// After kSoundcloudSuffix
+NSString *const kSoundcloudSearchLimit =		@"&limit=10";						// After kSoundcloudSuffix
 NSString *const kSoundcloudSearchString =		@"&q=";								// After kSoundcloudSuffix
-NSString *const kSoundcloudTrack =				@"tracks/";							// Followed by track id or suffix and search parameters
+NSString *const kSoundcloudTrack =				@"tracks";							// Followed by track id or suffix and search parameters
 NSString *const kSoundcloudUser =				@"users/";							// Followed by user id or suffix and search parameters
 NSString *const kSoundcloudStreamableFilter =	@"&filter=streamable";
+NSString *const kSoundcloudFormatJSON =			@"&format=json";					// Request Respones in JSON format
 
 @implementation TBDSoundcloud
 
@@ -39,8 +40,9 @@ NSString *const kSoundcloudStreamableFilter =	@"&filter=streamable";
 	handler([TBDTrack trackFromDictionary:trackInfo]);
 }
 
+/// TODO: Implement Method
 +(void) GetUserInfoFromID:(int)userID OnCompletion:(void (^)(TBDUser *user))handler{
-	// Todo
+
 }
 
 #pragma mark - Request - Search
@@ -82,7 +84,7 @@ NSString *const kSoundcloudStreamableFilter =	@"&filter=streamable";
 	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%i%@", kSoundcloudPrefix,kSoundcloudTrack,trackID,kSoundcloudSuffix]];
 }
 +(NSURL *) URLToRequestSearchQuery:(NSString *)search {
-	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@%@%@%@%@", kSoundcloudPrefix,kSoundcloudTrack,kSoundcloudSuffix,kSoundcloudSearchLimit,search,kSoundcloudSearchLimit,kSoundcloudStreamableFilter]];
+	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@%@%@%@%@%@", kSoundcloudPrefix,kSoundcloudTrack,kSoundcloudSuffix,kSoundcloudSearchString,search,kSoundcloudSearchLimit,kSoundcloudStreamableFilter,kSoundcloudFormatJSON]];
 }
 
 

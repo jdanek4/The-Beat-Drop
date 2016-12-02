@@ -51,7 +51,6 @@
 	
 	if([responseCode statusCode] != 200){
 		
-		handler(NULL);
 		return;
 		
 	}else {
