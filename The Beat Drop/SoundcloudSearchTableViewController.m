@@ -102,6 +102,7 @@ NSString *const cellIdentifier = @"trackCell";
 }
 -(void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
 	NSLog(@"Searchbar: Search Button Clicked");
+	// Todo: move space encoding to HTTPRequest Class
 	[self performSelectorInBackground:@selector(searchRequestWithKeyword:) withObject:[searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
 }
 -(void) searchBarTextDidEndEditing:(UISearchBar *)searchBar {
