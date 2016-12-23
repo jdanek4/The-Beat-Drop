@@ -22,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	// Setup Notification Center Selector To Respond to SoundCloud Search/Selection Table View
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectedSoundCloudtrack:) name:@"selectedSoundCloudtrack" object:nil];
 	
 }
 
@@ -117,6 +119,14 @@
 
 -(void) giveTrackData:(NSArray *)tracks {
 	
+}
+
+
+// Selector for Notifcation To Add Track to Drop List
+//		Must Open Music Player to select drop location
+//		Then add track to tracklist
+-(void) selectedSoundCloudtrack:(NSNotification *)notis {
+	NSLog(@"%@", notis.object);
 }
 
 @end

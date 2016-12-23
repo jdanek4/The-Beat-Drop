@@ -39,6 +39,8 @@
 #pragma mark - Get Requests - Generic Data
 
 +(void) GetRequestForDataFromURL:(NSURL *)url CompletionHandler:(void (^)(NSData *data))handler {
+	// TODO : Update to NSURLSession
+	
 	NSHTTPURLResponse *responseCode = nil;
 	NSMutableURLRequest *request = [self buildGetURLRequestForURL:url];
 	
@@ -51,7 +53,7 @@
 	
 	if([responseCode statusCode] != 200){
 		
-		return;
+		handler(NULL);
 		
 	}else {
 		

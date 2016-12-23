@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kh7-iN-lLK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kh7-iN-lLK">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home Table View Controller-->
+        <!--The Beat Drop-->
         <scene sceneID="KgW-K2-oz7">
             <objects>
                 <tableViewController id="Qof-ib-vXe" customClass="HomeTableViewController" sceneMemberID="viewController">
@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="atn-vd-3zG" id="uTt-9J-wNC">
-                                    <frame key="frameInset" width="375" height="44"/>
+                                    <frame key="frameInset" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -32,7 +32,7 @@
                             <outlet property="delegate" destination="Qof-ib-vXe" id="idu-eZ-Bpf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="jgx-oj-ZBl">
+                    <navigationItem key="navigationItem" title="The Beat Drop" id="jgx-oj-ZBl">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="gx7-Tk-Mv8">
                             <connections>
                                 <segue destination="TKE-Da-HVZ" kind="show" id="eAQ-by-AHk"/>
@@ -82,7 +82,7 @@
             </objects>
             <point key="canvasLocation" x="1790" y="880"/>
         </scene>
-        <!--Soundcloud Search Table View Controller-->
+        <!--SoundCloud-->
         <scene sceneID="NOX-iy-Uq6">
             <objects>
                 <tableViewController id="c3T-ER-jPb" customClass="SoundcloudSearchTableViewController" sceneMemberID="viewController">
@@ -95,7 +95,7 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7oJ-ab-g24" id="qVm-aH-5Mu">
-                                    <frame key="frameInset" width="375" height="44"/>
+                                    <frame key="frameInset" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -108,7 +108,7 @@
                             <outlet property="delegate" destination="c3T-ER-jPb" id="meX-ca-mNJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="bOO-Vf-UpB">
+                    <navigationItem key="navigationItem" title="SoundCloud" id="bOO-Vf-UpB">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="JJ8-tW-TZC">
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="c3T-ER-jPb" id="vii-xP-qxi"/>
@@ -158,6 +158,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="kCv-w8-mAg"/>
+        <segue reference="TUd-9H-aeA"/>
     </inferredMetricsTieBreakers>
 </document>

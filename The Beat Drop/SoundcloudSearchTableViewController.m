@@ -11,6 +11,7 @@
 #import "TrackTableViewCell.h"
 #import "TBDSoundcloud.h"
 #import "TBDHTTPRequest.h"
+#import "HomeTableViewController.h"
 
 @interface SoundcloudSearchTableViewController (){
 	NSMutableArray *trackArray;
@@ -121,7 +122,7 @@ NSString *const cellIdentifier = @"trackCell";
 
 -(void) updateTableDataWith:(NSArray *)newData {
 	// Replace Current Table Data with Newly Recived Search Data
-	trackArray = [newData mutableCopy];
+	trackArray = [newData copy];
 	
 	// Reload TableView will new Data
 	[self.tableView reloadData];
@@ -131,6 +132,17 @@ NSString *const cellIdentifier = @"trackCell";
 }
 
 #pragma mark - Navigation
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	// Song Selected
+	
+	__block TBDTrack *selectedTrack = [trackArray objectAtIndex:indexPath.row];
+	
+	[self.navigationController dismissViewControllerAnimated:YES completion:^{
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"selectedSoundCloudtrack" object:selectedTrack];
+	}];
+	
+}
 
 - (IBAction)cancelButtonPressed:(id)sender {
 	[self.navigationController dismissViewControllerAnimated:YES completion:nil];

@@ -17,7 +17,7 @@
 // Web Request Strings
 NSString *const kSoundcloudPrefix =				@"https://api.soundcloud.com/";
 NSString *const kSoundcloudSuffix =				@"?client_id=ef95044ef892046510fa005fad793c12";
-NSString *const kSoundcloudSearchLimit =		@"&limit=10";						// After kSoundcloudSuffix
+NSString *const kSoundcloudSearchLimit =		@"&limit=20";						// After kSoundcloudSuffix
 NSString *const kSoundcloudSearchString =		@"&q=";								// After kSoundcloudSuffix
 NSString *const kSoundcloudTrack =				@"tracks";							// Followed by track id or suffix and search parameters
 NSString *const kSoundcloudUser =				@"users/";							// Followed by user id or suffix and search parameters
