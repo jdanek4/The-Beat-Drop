@@ -1,11 +1,5 @@
 # The Beat Drop
-A unique music player for iOS
 
-## What is it?
-The Beat Drop is an iOS app that allows you to specify the most energetic position of a song (often called the drop in electronic music) and replay that song from this location. This can be useful for people who engage in high intensity workouts, giving themselves an extra boost to their activity resulting in enhanced perofrmance.
+A unique music playing app for iOS. Connecting to SoundClouds extensive array of music, The Beat Drop allows users to select the drop of any particular song. Then replay that song any time in the future beggining just before the selected position.
 
-### User Interface Design
-* Splash Screen - Loading window to wait for app to load track list and request up-to-date information on each track
-* Home Table View - TableView displaying all of the user's tracks in an order specified by them
-* Search Table View - TableView with search bar and keyboard. Used to search soundcloud for tracks
-* Music Player View - View to both select the drop location of a track and play a track after selecting its drop
+The Beat Drop was indented to be used while working out or any scenario where adding music emphasis is appreciated.
