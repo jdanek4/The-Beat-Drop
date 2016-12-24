@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AB0109421DDBAD4700D88D1F /* TrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0109401DDBAD4700D88D1F /* TrackTableViewCell.m */; };
 		AB0109431DDBAD4700D88D1F /* TrackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB0109411DDBAD4700D88D1F /* TrackTableViewCell.xib */; };
+		AB57F0CE1E0E19210091B0CD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AB57F0CD1E0E19210091B0CD /* Reachability.m */; };
 		AB64F72D1DAE8512002BC4F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB64F72C1DAE8512002BC4F0 /* main.m */; };
 		AB64F7301DAE8512002BC4F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB64F72F1DAE8512002BC4F0 /* AppDelegate.m */; };
 		AB64F7361DAE8512002BC4F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB64F7341DAE8512002BC4F0 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 		AB64F7511DAE8512002BC4F0 /* The_Beat_DropUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB64F7501DAE8512002BC4F0 /* The_Beat_DropUITests.m */; };
 		AB64F7611DAE852D002BC4F0 /* TBDHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB64F7601DAE852D002BC4F0 /* TBDHTTPRequest.m */; };
 		AB64F7641DAE8694002BC4F0 /* WebRequestTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB64F7631DAE8694002BC4F0 /* WebRequestTest.m */; };
+		AB6C0A481E0E156F00B4DB24 /* TBDReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6C0A471E0E156F00B4DB24 /* TBDReachability.m */; };
 		AB8D75041DCADDE2005EA6CB /* TBDFileIO.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8D75031DCADDE2005EA6CB /* TBDFileIO.m */; };
 		AB91318E1DB2FB820038BCAF /* TBDTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = AB91318D1DB2FB820038BCAF /* TBDTrack.m */; };
 		AB9131931DB2FFEB0038BCAF /* TBDUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AB9131921DB2FFEB0038BCAF /* TBDUser.m */; };
@@ -51,6 +53,8 @@
 		AB01093F1DDBAD4700D88D1F /* TrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackTableViewCell.h; sourceTree = "<group>"; };
 		AB0109401DDBAD4700D88D1F /* TrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackTableViewCell.m; sourceTree = "<group>"; };
 		AB0109411DDBAD4700D88D1F /* TrackTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackTableViewCell.xib; sourceTree = "<group>"; };
+		AB57F0CC1E0E19210091B0CD /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		AB57F0CD1E0E19210091B0CD /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		AB64F7281DAE8512002BC4F0 /* The Beat Drop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Beat Drop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB64F72C1DAE8512002BC4F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AB64F72E1DAE8512002BC4F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -67,6 +71,8 @@
 		AB64F75F1DAE852D002BC4F0 /* TBDHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDHTTPRequest.h; sourceTree = "<group>"; };
 		AB64F7601DAE852D002BC4F0 /* TBDHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDHTTPRequest.m; sourceTree = "<group>"; };
 		AB64F7631DAE8694002BC4F0 /* WebRequestTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebRequestTest.m; sourceTree = "<group>"; };
+		AB6C0A461E0E156F00B4DB24 /* TBDReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDReachability.h; sourceTree = "<group>"; };
+		AB6C0A471E0E156F00B4DB24 /* TBDReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDReachability.m; sourceTree = "<group>"; };
 		AB8D75021DCADDE2005EA6CB /* TBDFileIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDFileIO.h; sourceTree = "<group>"; };
 		AB8D75031DCADDE2005EA6CB /* TBDFileIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDFileIO.m; sourceTree = "<group>"; };
 		AB91318C1DB2FB820038BCAF /* TBDTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDTrack.h; sourceTree = "<group>"; };
@@ -138,6 +144,7 @@
 		AB64F72A1DAE8512002BC4F0 /* The Beat Drop */ = {
 			isa = PBXGroup;
 			children = (
+				AB6C0A451E0E154200B4DB24 /* Reachability */,
 				AB8D75011DCADDB3005EA6CB /* File Manager */,
 				ABACEF0E1DB7B45400417E5F /* Audio Player */,
 				AB9131941DB320780038BCAF /* Categories */,
@@ -190,6 +197,17 @@
 				AB64F7601DAE852D002BC4F0 /* TBDHTTPRequest.m */,
 			);
 			name = "Web API";
+			sourceTree = "<group>";
+		};
+		AB6C0A451E0E154200B4DB24 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				AB57F0CC1E0E19210091B0CD /* Reachability.h */,
+				AB57F0CD1E0E19210091B0CD /* Reachability.m */,
+				AB6C0A461E0E156F00B4DB24 /* TBDReachability.h */,
+				AB6C0A471E0E156F00B4DB24 /* TBDReachability.m */,
+			);
+			name = Reachability;
 			sourceTree = "<group>";
 		};
 		AB8D75011DCADDB3005EA6CB /* File Manager */ = {
@@ -468,9 +486,11 @@
 				AB64F7301DAE8512002BC4F0 /* AppDelegate.m in Sources */,
 				AB64F7611DAE852D002BC4F0 /* TBDHTTPRequest.m in Sources */,
 				ABACEF111DB7B49000417E5F /* TBDAudioPlayer.m in Sources */,
+				AB57F0CE1E0E19210091B0CD /* Reachability.m in Sources */,
 				ABAE263C1DBB006F00AC83DF /* HomeTableViewController.m in Sources */,
 				AB64F72D1DAE8512002BC4F0 /* main.m in Sources */,
 				AB91318E1DB2FB820038BCAF /* TBDTrack.m in Sources */,
+				AB6C0A481E0E156F00B4DB24 /* TBDReachability.m in Sources */,
 				ABB9F5F21DB00D42008A2A00 /* TBDSoundcloud.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,10 +643,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 83X459G38K;
 				INFOPLIST_FILE = "The Beat Drop/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.danek.The-Beat-Drop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -636,10 +657,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 83X459G38K;
 				INFOPLIST_FILE = "The Beat Drop/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "me.danek.The-Beat-Drop";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

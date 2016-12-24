@@ -10,6 +10,9 @@
 #import "TBDTrack.h"
 #import "TrackTableViewCell.h"
 #import "TBDHTTPRequest.h"
+#import "DropPlayerViewController.h"
+
+NSString *const kDropPlayerStoryboardName = @"DropPlayerViewController";
 
 @interface HomeTableViewController (){
 	NSArray *trackArray;
@@ -127,6 +130,16 @@
 //		Then add track to tracklist
 -(void) selectedSoundCloudtrack:(NSNotification *)notis {
 	NSLog(@"%@", notis.object);
+	
+	DropPlayerViewController *dropPlayer = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:kDropPlayerStoryboardName];
+	
+	
+	[self.navigationController presentViewController:dropPlayer animated:YES completion:^{
+		// On Completion
+		[dropPlayer giveTrackForEditing:notis.object];
+	}];
+	
+	
 }
 
 @end

@@ -10,6 +10,7 @@
 
 @interface TBDTrack : NSObject
 
+// Properties
 @property(strong, nonatomic) NSString*	name;
 @property(strong, nonatomic) NSString*	artist;
 @property(strong, nonatomic) NSURL*		artworkURL;
@@ -21,9 +22,11 @@
 @property(assign, nonatomic) double		dropTime;
 @property(assign, nonatomic) BOOL		streamable;
 
-
+// Class Methods
 +(id) trackFromDictionary:(NSDictionary *)trackInfo;
 
+// Instance Methods
 -(NSURL *) getSamllArtworkURL;
+-(NSURL *) getArtworkURL;
 
 @end

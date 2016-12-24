@@ -8,7 +8,7 @@
 
 #import "TBDTrack.h"
 #import "NSDictionary+ExceptionHandling.h"
-
+#import "TBDReachability.h"
 
 // Soundclound JSON Key Values
 NSString *const kSoundcloudKeySongTitle = @"title";
@@ -22,7 +22,8 @@ NSString *const kSoundcloudKeySongStreamable = @"streamable";
 
 // Soundcloud Image Values
 NSString *const kSoundcloudImageDefault = @"large";
-NSString *const kSoundcloudImageLarge = @"large";
+NSString *const kSoundcloudImageLarge = @"t500x500";
+NSString *const kSoundcloudImageMedium = @"t300x300";
 NSString *const kSoundcloudImageSmall = @"badge";
 
 @implementation TBDTrack
@@ -53,6 +54,23 @@ NSString *const kSoundcloudImageSmall = @"badge";
 -(NSURL *) getSamllArtworkURL {
 	NSString *urlString = [[self.artworkURL absoluteString] stringByReplacingOccurrencesOfString:kSoundcloudImageDefault withString:kSoundcloudImageSmall];
 	return [NSURL URLWithString:urlString];
+}
+-(NSURL *) getArtworkURL {
+	__block NSString *artWorkURL = NULL;
+	[TBDReachability PerformBlockWithNetworkConsideration:^(NSInteger status) {
+		switch (status) {
+			case 0: // Network Unreachable
+				artWorkURL = NULL;
+				break;
+			case 1: // Med Quality
+				artWorkURL = [[self.artworkURL absoluteString] stringByReplacingOccurrencesOfString:kSoundcloudImageDefault withString:kSoundcloudImageMedium];
+				break;
+			case 2: // High Quality
+				artWorkURL = [[self.artworkURL absoluteString] stringByReplacingOccurrencesOfString:kSoundcloudImageDefault withString:kSoundcloudImageLarge];
+				break;
+		}
+	}];
+	return [NSURL URLWithString:artWorkURL];
 }
 
 
