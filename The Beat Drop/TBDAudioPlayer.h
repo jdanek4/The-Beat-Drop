@@ -16,8 +16,13 @@
 @property(strong, nonatomic) AVPlayer *player;
 @property(strong, nonatomic) TBDTrack *track;
 
-
 -(id) initWithTrack:(TBDTrack *)track;
+-(void) play;
+-(void) pause;
+-(void) setToTime:(double)time;
+-(void) adjustTimeByDelta:(double) time;
 
+-(BOOL) isPlaying;
 
 @end
+

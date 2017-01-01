@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="92" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="atn-vd-3zG" id="uTt-9J-wNC">
-                                    <frame key="frameInset" width="414" height="43.666666666666664"/>
+                                    <frame key="frameInset" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -111,8 +111,11 @@
                                                 <constraint firstAttribute="width" constant="40" id="pvA-an-pLB"/>
                                             </constraints>
                                             <state key="normal" image="PlayButton"/>
+                                            <connections>
+                                                <action selector="playPauseButtonPressed:" destination="sCA-I9-IZS" eventType="touchUpInside" id="pfU-UU-PIM"/>
+                                            </connections>
                                         </button>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="PlayerPosition" translatesAutoresizingMaskIntoConstraints="NO" id="52y-Pa-Xcg"/>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="PlayerPosition" translatesAutoresizingMaskIntoConstraints="NO" id="52y-Pa-Xcg"/>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="bJR-rp-e53"/>
                                     </subviews>
                                     <constraints>
@@ -124,7 +127,7 @@
                                         <constraint firstItem="bJR-rp-e53" firstAttribute="centerX" secondItem="52y-Pa-Xcg" secondAttribute="centerX" id="Cd7-Nv-gRi"/>
                                         <constraint firstAttribute="trailing" secondItem="IKo-97-VMM" secondAttribute="trailing" constant="8" id="LRP-8n-ByL"/>
                                         <constraint firstItem="PM8-OK-Pud" firstAttribute="centerX" secondItem="JHi-hU-fAL" secondAttribute="centerX" id="S7l-gZ-Pfa"/>
-                                        <constraint firstItem="IKo-97-VMM" firstAttribute="top" secondItem="JHi-hU-fAL" secondAttribute="top" constant="10" id="TZm-3T-sWl"/>
+                                        <constraint firstItem="IKo-97-VMM" firstAttribute="top" secondItem="JHi-hU-fAL" secondAttribute="top" constant="15" id="TZm-3T-sWl"/>
                                         <constraint firstItem="lq6-pn-IHj" firstAttribute="leading" secondItem="JHi-hU-fAL" secondAttribute="leading" constant="10" id="UWA-bM-YBG"/>
                                         <constraint firstItem="52y-Pa-Xcg" firstAttribute="top" relation="greaterThanOrEqual" secondItem="PM8-OK-Pud" secondAttribute="bottom" constant="5" id="WZl-Jv-Iy7"/>
                                         <constraint firstItem="jpd-fk-rTy" firstAttribute="centerX" secondItem="JHi-hU-fAL" secondAttribute="centerX" id="Wmc-q5-hqY"/>
@@ -184,7 +187,7 @@
                                 <rect key="frame" x="0.0" y="92" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7oJ-ab-g24" id="qVm-aH-5Mu">
-                                    <frame key="frameInset" width="414" height="43.666666666666664"/>
+                                    <frame key="frameInset" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

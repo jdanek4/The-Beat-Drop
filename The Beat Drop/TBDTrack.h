@@ -18,7 +18,7 @@
 @property(strong, nonatomic) NSURL*		soundwaveURL;
 
 @property(assign, nonatomic) unsigned int trackID;
-@property(assign, nonatomic) unsigned int duration;
+@property(assign, nonatomic) double duration;
 @property(assign, nonatomic) double		dropTime;
 @property(assign, nonatomic) BOOL		streamable;
 

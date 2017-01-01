@@ -24,10 +24,10 @@
 	if([TBDFileIO DoesFileExist]){
 		// Ensure Playability of Saved Songs
 		NSArray *tracks = [TBDFileIO GetObjectsFromFile];
-		[self performSelector:@selector(advanceToHomeTableViewWithArray:) withObject:tracks afterDelay:1.0f];
+		[self performSelector:@selector(advanceToHomeTableViewWithArray:) withObject:tracks afterDelay:0.2f];
 	}else {
 		// First time opening app or never added a track to their list
-		[self performSelector:@selector(advanceToHomeTableViewWithArray:) withObject:[NSArray array] afterDelay:1.0f];
+		[self performSelector:@selector(advanceToHomeTableViewWithArray:) withObject:[NSArray array] afterDelay:0.2f];
 	}
 }
 

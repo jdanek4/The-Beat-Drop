@@ -10,21 +10,31 @@
 #import "TBDTrack.h"
 #import "TBDAudioPlayer.h"
 #import "TBDHTTPRequest.h"
+#import "TBDWaveformView.h"
 
+NSString *const kplayButtonAssetName = @"PlayButton";
+NSString *const kPauseButtonAsswerName = @"PauseButton";
 
 @interface DropPlayerViewController ()
 
+
 @property(nonatomic, retain) TBDAudioPlayer *audioPlayer;
-@property(nonatomic, retain) UIImageView *soundWaveImageView;
+@property(nonatomic, retain) TBDWaveformView *soundWaveImageView;
+@property(nonatomic, assign) BOOL editingMode;
 
 @end
 
 
 @implementation DropPlayerViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+	[self performSelectorOnMainThread:@selector(loadingBegan) withObject:nil waitUntilDone:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,40 +44,61 @@
 
 -(void) giveTrackForEditing:(TBDTrack *)track {
 	NSLog(@"Editing: %@", track);
-	
-	[self basicSetupForTrack:track andOnCompletion:^{
+	self.editingMode = true;
+	[self setupUIForTrack:track andOnCompletion:^{
 		
 	}];
 }
 
 -(void) giveTrackForPlaying:(TBDTrack *)track {
 	NSLog(@"Playing: %@", track);
-	
-	[self basicSetupForTrack:track andOnCompletion:^{
+	self.editingMode = false;
+	[self setupUIForTrack:track andOnCompletion:^{
+		// Set Player to Drop Position minus
 		
 	}];
 }
 
 #pragma mark - Setup 
 
--(void) basicSetupForTrack:(TBDTrack *)track andOnCompletion:(void (^)())completion {
-	[self performSelectorOnMainThread:@selector(loadingBegan) withObject:nil waitUntilDone:YES];
+// Setup track labels, artwork, and waveform
+-(void) setupUIForTrack:(TBDTrack *)track andOnCompletion:(void (^)())completion {
+	
+	// Setup Artwrok and Label Information
+	[self performSelectorOnMainThread:@selector(setupArtworkViewsFromURL:) withObject:track.getArtworkURL waitUntilDone:YES];
+	[self performSelectorOnMainThread:@selector(setupAudioPlayerWithTrack:) withObject:track waitUntilDone:YES];
 	[self performSelector:@selector(setupLabelsForTitle:andArtist:) withObject:track.name withObject:track.artist];
 	[self performSelectorOnMainThread:@selector(setupSoundWaveForTrack:) withObject:track waitUntilDone:YES];
-	
-	[self performSelectorInBackground:@selector(setupArtworkViewsFromURL:) withObject:track.getArtworkURL];
-	[self performSelectorInBackground:@selector(setupAudioPlayerWithTrack:) withObject:track];
+	[self performSelectorOnMainThread:@selector(loadingEnded) withObject:nil waitUntilDone:YES];
+
+	completion();
 }
 
 #pragma mark - UI Actions
 
 - (IBAction)closeButtonPressed:(id)sender {
 	
+	[self dismissViewControllerAnimated:YES completion:^{
+		// On Completion Sent Home View Status
+		[self.audioPlayer pause];
+	}];
+	
 }
-
-#pragma mark - Touch Actions
-
-
+- (IBAction)playPauseButtonPressed:(id)sender {
+	if ([self.audioPlayer isPlaying]) {
+		// Display Play Button
+		[self.playPauseButton setImage:[UIImage imageNamed:kplayButtonAssetName] forState:UIControlStateNormal];
+		// Pause Music
+		[self.audioPlayer pause];
+	}else {
+		// Display Pause Button
+		[self.playPauseButton setImage:[UIImage imageNamed:kPauseButtonAsswerName] forState:UIControlStateNormal];
+		// Play Music
+		[self.audioPlayer play];
+		// Begin WaveformAnimation
+		[self.soundWaveImageView updateWaveFormViewLocation];
+	}
+}
 
 #pragma mark - Audio Methods
 
@@ -92,6 +123,7 @@
 	[self.activityIndicator setHidden:true];
 	
 	// Show Play/Pause Button
+	[self.playPauseButton setImage:[UIImage imageNamed:kplayButtonAssetName] forState:UIControlStateNormal];
 	[self.playPauseButton setHidden:false];
 }
 
@@ -117,16 +149,33 @@
 }
 
 -(void) setupSoundWaveForTrack:(TBDTrack *)track {
+	// Create Bounds for Soundwave image
 	CGRect newBounds = [self.trackPositionImage convertRect:self.trackPositionImage.bounds toView:self.view];
-	self.soundWaveImageView = [[UIImageView alloc] init];
+	
+	// Create Soundwave image object and perform setup
+	self.soundWaveImageView = [[TBDWaveformView alloc] init];
+	[self.soundWaveImageView setUserInteractionEnabled:true];
+	self.soundWaveImageView.audioplayer = self.audioPlayer;
+	
+	// Add to View
 	[self.view addSubview:self.soundWaveImageView];
+	
 	[TBDHTTPRequest GetRequestForImageFromURL:track.soundwaveURL CompletionHandler:^(UIImage *image) {
-		[self.soundWaveImageView performSelectorOnMainThread:@selector(setImage:) withObject:[self convertToMask:image] waitUntilDone:YES];
-		[self.soundWaveImageView setAlpha:0.7f];
-		[self.soundWaveImageView setFrame:CGRectMake(newBounds.origin.x, newBounds.origin.y, track.duration/100, newBounds.size.height)];
+		if (image.size.width > 0) {
+			// Soundwave Recieved Successfully
+			[self.soundWaveImageView performSelectorOnMainThread:@selector(setImage:) withObject:[self convertToMask:image] waitUntilDone:YES];
+			[self.soundWaveImageView setAlpha:0.625f];
+			[self.soundWaveImageView setFrame:CGRectMake(newBounds.origin.x, newBounds.origin.y, image.size.width, newBounds.size.height)];
+		}else {
+			// Soundwave Not Found - Revert to Home Screen with error
+			
+		}
 	}];
 }
 
+-(UIStatusBarStyle) preferredStatusBarStyle {
+	return UIStatusBarStyleLightContent;
+}
 
 # pragma mark - Soundwave Alterations
 - (UIImage*)convertToMask: (UIImage *) image

@@ -131,14 +131,15 @@ NSString *const kDropPlayerStoryboardName = @"DropPlayerViewController";
 -(void) selectedSoundCloudtrack:(NSNotification *)notis {
 	NSLog(@"%@", notis.object);
 	
+	// Create View Controller from Storyboard ID
 	DropPlayerViewController *dropPlayer = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:kDropPlayerStoryboardName];
 	
-	
+		// Present View Controller after the information was recieved
 	[self.navigationController presentViewController:dropPlayer animated:YES completion:^{
-		// On Completion
+		// Add extra elemenets such as waveform and cancel all loading animations
 		[dropPlayer giveTrackForEditing:notis.object];
+		
 	}];
-	
 	
 }
 

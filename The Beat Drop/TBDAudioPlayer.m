@@ -10,8 +10,6 @@
 
 @interface TBDAudioPlayer ()
 
-
-
 @end
 
 @implementation TBDAudioPlayer
@@ -19,10 +17,39 @@
 -(id) initWithTrack:(TBDTrack *)track {
 	if(self = [super init]){
 		
+		// Set Track Property
+		self.track = track;
 		
+		// Get Redirected Stream URL
+		[self getHTTPRedirectWithURL:track.streamURL];
 		
 	}
 	return self;
+}
+
+#pragma mark - Audio Player Controls
+
+-(void) play {
+	[self.player play];
+}
+
+-(void) pause {
+	[self.player pause];
+}
+
+-(void) adjustTimeByDelta:(double) time {
+	[self setToTime:CMTimeGetSeconds(self.player.currentTime)+time];
+}
+
+-(void) setToTime:(double)time {
+	[self pause];
+	[self.player seekToTime:CMTimeMake(time, 1)];
+}
+
+#pragma mark - Boolean Checks
+
+-(BOOL) isPlaying {
+	return (self.player.rate != 0) && (self.player.error == nil);
 }
 
 #pragma mark - Stream URL Redirect
@@ -44,9 +71,9 @@
 -(void) URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest * _Nullable))completionHandler {
 	
 	// Recieved redirection Audio URL
-	[self. track setStreamURL:request.URL];
-	self.player = [AVPlayer playerWithURL:[self.track streamURL]];
-	
+	[self.track setStreamURL:request.URL];
+	self.player = [[AVPlayer alloc] initWithURL:self.track.streamURL];
+
 }
 
 

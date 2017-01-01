@@ -13,7 +13,6 @@
 /*
  Constants
 */
-
 // Web Request Strings
 NSString *const kSoundcloudPrefix =				@"https://api.soundcloud.com/";
 NSString *const kSoundcloudSuffix =				@"?client_id=Ebtg4XFMDZpkPf017RXzZrN5Lxcb0rEa";

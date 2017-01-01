@@ -38,16 +38,11 @@ NSString *const cellIdentifier = @"trackCell";
 	self.searchController.dimsBackgroundDuringPresentation = YES;
 	self.searchController.searchBar.delegate = self;
 	self.definesPresentationContext = YES;
-
 	
 	// Register Custom TableViewCell to be used as Reuseable cell
 	[self.tableView registerNib:[UINib nibWithNibName:@"TrackTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
 	
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	// TODO: Implement Featured Track List
 }
 
 - (void)didReceiveMemoryWarning {

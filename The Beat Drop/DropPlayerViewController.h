@@ -10,6 +10,15 @@
 
 @interface DropPlayerViewController : UIViewController
 
+typedef enum dropPlayerCompletionTypes {
+	
+	PLAYED_SUCCESSFUL,
+	EXITED_BEFORE_SELECTION,
+	SELECTED_SUCCESSFUL,
+	OTHER_ERROR
+	
+} DropPlayerCompletionState;
+
 @property (weak, nonatomic) IBOutlet UIImageView *trackArtWorkImageView;
 @property (weak, nonatomic) IBOutlet UILabel *trackTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *trackArtistLabel;
