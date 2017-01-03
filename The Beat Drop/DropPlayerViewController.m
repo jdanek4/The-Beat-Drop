@@ -12,6 +12,8 @@
 #import "TBDHTTPRequest.h"
 #import "TBDWaveformView.h"
 
+#import <MediaPlayer/MediaPlayer.h>
+
 NSString *const kplayButtonAssetName = @"PlayButton";
 NSString *const kPauseButtonAsswerName = @"PauseButton";
 
@@ -28,13 +30,27 @@ NSString *const kPauseButtonAsswerName = @"PauseButton";
 @implementation DropPlayerViewController
 
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+	
+	// Setup Background Controls
+	[[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+	[self becomeFirstResponder];
 }
 
 -(void) viewDidAppear:(BOOL)animated {
 	[self performSelectorOnMainThread:@selector(loadingBegan) withObject:nil waitUntilDone:YES];
+}
+
+-(void) viewDidDisappear:(BOOL)animated {
+	// Release Background Controls
+	[[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+	
+	[self resignFirstResponder];
+	
+	// Continue Disappearing View
+	[super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,7 +70,8 @@ NSString *const kPauseButtonAsswerName = @"PauseButton";
 	NSLog(@"Playing: %@", track);
 	self.editingMode = false;
 	[self setupUIForTrack:track andOnCompletion:^{
-		// Set Player to Drop Position minus
+		// Set Player to Drop Position minus constant
+		// Todo: Settings page with setting to adjust pre-drop timing
 		
 	}];
 }
@@ -69,8 +86,9 @@ NSString *const kPauseButtonAsswerName = @"PauseButton";
 	[self performSelectorOnMainThread:@selector(setupAudioPlayerWithTrack:) withObject:track waitUntilDone:YES];
 	[self performSelector:@selector(setupLabelsForTitle:andArtist:) withObject:track.name withObject:track.artist];
 	[self performSelectorOnMainThread:@selector(setupSoundWaveForTrack:) withObject:track waitUntilDone:YES];
-	[self performSelectorOnMainThread:@selector(loadingEnded) withObject:nil waitUntilDone:YES];
-
+	
+	[self waitUntilLoadingCompleted];
+	
 	completion();
 }
 
@@ -106,6 +124,41 @@ NSString *const kPauseButtonAsswerName = @"PauseButton";
 	self.audioPlayer = [[TBDAudioPlayer alloc] initWithTrack:track];
 }
 
+#pragma mark - Background Control Handlers
+
+-(void) setupNowPlayingInfo {
+	MPNowPlayingInfoCenter *infoCenter = [MPNowPlayingInfoCenter defaultCenter];
+	infoCenter.nowPlayingInfo =
+	[NSDictionary dictionaryWithObjectsAndKeys:self.trackTitleLabel.text, MPMediaItemPropertyTitle,
+	 self.trackArtistLabel.text, MPMediaItemPropertyArtist,
+	 nil];
+
+}
+
+-(void) remoteControlReceivedWithEvent:(UIEvent *)event {
+	if (event.type == UIEventTypeRemoteControl) {
+		switch (event.subtype) {
+			case UIEventSubtypeRemoteControlPlay:
+				NSLog(@"Play Pressed!");
+				[self.audioPlayer play];
+				break;
+			case UIEventSubtypeRemoteControlPause:
+				NSLog(@"Pause Pressed!");
+				[self.audioPlayer pause];
+				break;
+			case UIEventSubtypeRemoteControlNextTrack:
+				NSLog(@"Next Track Pressed!");
+				break;
+			case UIEventSubtypeRemoteControlPreviousTrack:
+				NSLog(@"Previous Track Pressed!");
+				break;
+				
+			default:
+				break;
+		}
+	}
+}
+
 #pragma mark - UI Handlers
 
 -(void) loadingBegan {
@@ -115,6 +168,28 @@ NSString *const kPauseButtonAsswerName = @"PauseButton";
 	// Display Activity Indicator and begin animating
 	[self.activityIndicator setHidden:false];
 	[self.activityIndicator startAnimating];
+	
+	// Disable User Interaction on WaveForm
+	[self.soundWaveImageView setUserInteractionEnabled:false];
+}
+
+static int timeout = 0;
+-(void) waitUntilLoadingCompleted {
+	timeout += 1;
+	if(self.trackArtWorkImageView.image.size.width > 0 && [self.audioPlayer isDoneLoading]){
+		// All Done Loading
+		[self performSelectorOnMainThread:@selector(loadingEnded) withObject:nil waitUntilDone:false];
+	}else {
+		if(timeout >= 100){
+			// 10 Seconds has gone by and still not done loading
+			// Probable Connection Issues
+			// Revert to Home Screen and Display Error
+			
+		}else {
+			[self performSelector:@selector(waitUntilLoadingCompleted) withObject:nil afterDelay:0.1f];
+		}
+	}
+	
 }
 
 -(void) loadingEnded {
@@ -125,6 +200,9 @@ NSString *const kPauseButtonAsswerName = @"PauseButton";
 	// Show Play/Pause Button
 	[self.playPauseButton setImage:[UIImage imageNamed:kplayButtonAssetName] forState:UIControlStateNormal];
 	[self.playPauseButton setHidden:false];
+	
+	// Eanble User Interaction on WaveForm
+	[self.soundWaveImageView setUserInteractionEnabled:true];
 }
 
 -(void) setupArtworkViewsFromURL:(NSURL *) url {
@@ -134,7 +212,6 @@ NSString *const kPauseButtonAsswerName = @"PauseButton";
 			
 			self.backgroundArtworkImageView.image = [image copy];
 			self.trackArtWorkImageView.image = [image copy];
-			
 		}else {
 			// Artwork Not Found - Display TBD Default Placeholder
 			
@@ -154,7 +231,6 @@ NSString *const kPauseButtonAsswerName = @"PauseButton";
 	
 	// Create Soundwave image object and perform setup
 	self.soundWaveImageView = [[TBDWaveformView alloc] init];
-	[self.soundWaveImageView setUserInteractionEnabled:true];
 	self.soundWaveImageView.audioplayer = self.audioPlayer;
 	
 	// Add to View

@@ -52,6 +52,52 @@
 	return (self.player.rate != 0) && (self.player.error == nil);
 }
 
+-(BOOL) isDoneLoading {
+	
+	// Check if AVPlayer thinks its ready
+	//		Not A Completely Viable Solution as AVPlayer thinks its ready before actually being able to play the item.
+	//		Good as a quick check before intensive check happens next
+	
+	if (self.player.status != AVPlayerStatusReadyToPlay) {
+		return false;
+	}
+	
+	// Get many seconds of the song has been loaded
+	double playableDuration = [self playableDuration];
+	
+	// Ensure Load Time at least 1/10 + the position of the drop
+	//		or 5/10 of the song if drop position is null
+	bool playable = false;
+	
+	if ([self.track dropTime] == 0) {
+		playable = (playableDuration > (self.track.duration / 1000.0) * 0.5) ? true : false;
+	}else {
+		playable = (playableDuration > self.track.dropTime + ((self.track.duration / 1000.0) * 0.1)) ? true : false;
+	}
+	
+	return playable;
+}
+
+- (NSTimeInterval) playableDuration
+{
+	AVPlayerItem * item = self.player.currentItem;
+	
+	if (item.status == AVPlayerItemStatusReadyToPlay) {
+		NSArray * timeRangeArray = item.loadedTimeRanges;
+		
+		CMTimeRange aTimeRange = [[timeRangeArray objectAtIndex:0] CMTimeRangeValue];
+		
+		double startTime = CMTimeGetSeconds(aTimeRange.start);
+		double loadedDuration = CMTimeGetSeconds(aTimeRange.duration);
+		
+		return (NSTimeInterval)(startTime + loadedDuration);
+	}
+	else
+	{
+		return(CMTimeGetSeconds(kCMTimeInvalid));
+	}
+}
+
 #pragma mark - Stream URL Redirect
 
 -(void) getHTTPRedirectWithURL:(NSURL *)url {

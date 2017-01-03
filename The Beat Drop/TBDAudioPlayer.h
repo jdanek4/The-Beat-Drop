@@ -23,6 +23,7 @@
 -(void) adjustTimeByDelta:(double) time;
 
 -(BOOL) isPlaying;
+-(BOOL) isDoneLoading;
 
 @end
 

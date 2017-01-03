@@ -18,7 +18,7 @@
 
 
 - (void) touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
-	
+		
 	currentPoint = [[touches anyObject] locationInView:self];
 	self.wasPlaying = [self.audioplayer isPlaying];
 	[self.audioplayer pause];
@@ -46,6 +46,7 @@
 	
 }
 -(void) touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+	
 	[self.audioplayer setToTime:[self getWaveformPosition]];
 	if (self.wasPlaying) {
 		[self.audioplayer play];
@@ -56,22 +57,21 @@
 -(double) getWaveformPosition {
 	
 	CGPoint origin = [self convertPoint:self.bounds.origin toView:self.superview];
-	int superViewMiddle = self.superview.bounds.size.width / 2;
+	int superViewMiddle = self.superview.bounds.size.width / 2.0f;
 
 	double distToCenter = superViewMiddle - origin.x;
 	
-	return (distToCenter / self.bounds.size.width) * (self.audioplayer.track.duration/1000);
+	return (distToCenter / self.bounds.size.width) * (self.audioplayer.track.duration/1000.00f);
 }
 
 -(void) updateWaveFormViewLocation {
 	
 	// Match up waveform location to audioplayer location
-	double percentOfSong = CMTimeGetSeconds(self.audioplayer.player.currentTime)*1000 / self.audioplayer.track.duration;
-	CGPoint currentPosition = CGPointMake((self.frame.size.width/2)+(self.superview.frame.size.width/2)-self.frame.size.width*percentOfSong, self.center.y);
+	double percentOfSong = CMTimeGetSeconds(self.audioplayer.player.currentTime)*1000.0 / self.audioplayer.track.duration;
+	CGPoint currentPosition = CGPointMake((self.frame.size.width/2.0f)+(self.superview.frame.size.width/2.0f)-self.frame.size.width*percentOfSong, self.center.y);
 	
 	self.center = currentPosition;
 	
-	NSLog(@"%@", [self.audioplayer isPlaying] ? @"PLAYING" : @"NOT PLAYING");
 	if([self.audioplayer isPlaying]){
 		// TODO: PerformSelector With Delay (Delay is fixed rate per song calculated from the length of the song)
 		[self performSelectorInBackground:@selector(updateWaveFormViewLocation) withObject:nil];
