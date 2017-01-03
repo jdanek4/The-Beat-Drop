@@ -26,6 +26,7 @@ typedef enum dropPlayerCompletionTypes {
 @property (weak, nonatomic) IBOutlet UIButton *playPauseButton;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundArtworkImageView;
+@property (weak, nonatomic) IBOutlet UIButton *selectDropButton;
 
 
 -(void) giveTrackForEditing:(id)track;

@@ -15,7 +15,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 NSString *const kplayButtonAssetName = @"PlayButton";
-NSString *const kPauseButtonAsswerName = @"PauseButton";
+NSString *const kPauseButtonAssetName = @"PauseButton";
 
 @interface DropPlayerViewController ()
 
@@ -110,12 +110,24 @@ NSString *const kPauseButtonAsswerName = @"PauseButton";
 		[self.audioPlayer pause];
 	}else {
 		// Display Pause Button
-		[self.playPauseButton setImage:[UIImage imageNamed:kPauseButtonAsswerName] forState:UIControlStateNormal];
+		[self.playPauseButton setImage:[UIImage imageNamed:kPauseButtonAssetName] forState:UIControlStateNormal];
 		// Play Music
 		[self.audioPlayer play];
 		// Begin WaveformAnimation
 		[self.soundWaveImageView updateWaveFormViewLocation];
 	}
+}
+
+- (IBAction)selectDropButtonPressed:(id)sender {
+	// Pause If playing
+	[self.audioPlayer pause];
+	TBDTrack *track = self.audioPlayer.track;
+	// Set Track Drop Time to Current Time
+	track.dropTime = CMTimeGetSeconds(self.audioPlayer.player.currentTime);
+	// Dismiss View Controller and Give Track to Home View
+	[self dismissViewControllerAnimated:YES completion:^{
+		
+	}];
 }
 
 #pragma mark - Audio Methods
@@ -171,6 +183,9 @@ NSString *const kPauseButtonAsswerName = @"PauseButton";
 	
 	// Disable User Interaction on WaveForm
 	[self.soundWaveImageView setUserInteractionEnabled:false];
+	
+	// Hide Select Drop Button
+	[self.selectDropButton setHidden:true];
 }
 
 static int timeout = 0;
@@ -203,6 +218,11 @@ static int timeout = 0;
 	
 	// Eanble User Interaction on WaveForm
 	[self.soundWaveImageView setUserInteractionEnabled:true];
+	
+	// Enable Select Drop Button if applicable
+	if (self.editing) {
+		[self.selectDropButton setHidden:false];
+	}
 }
 
 -(void) setupArtworkViewsFromURL:(NSURL *) url {
