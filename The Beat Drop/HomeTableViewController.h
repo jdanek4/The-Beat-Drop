@@ -8,8 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum DropTableStatus {
+	ERROR_NO_DROP_SELECTED = 1,
+	ERROR_TIMEOUT,
+	ERROR_UNEXPLAINED,
+	SUCCESS_DROP_SELECTED,
+	SUCCESS_DROP_PLAYED,
+	OPTION_PREV_TRACK,
+	OPTION_NEXT_TRACK
+} DropTableStatus;
+
 @interface HomeTableViewController : UITableViewController
 
+
 -(void) giveTrackData:(NSArray *)tracks;
+
+-(void) giveTrack:(id)track withStatusCode:(DropTableStatus)statusCode;
 
 @end

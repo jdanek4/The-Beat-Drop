@@ -11,12 +11,24 @@
 #import "TrackTableViewCell.h"
 #import "TBDHTTPRequest.h"
 #import "DropPlayerViewController.h"
+#import "TBDFileIO.h"
 
+// Storyboard Constants
 NSString *const kDropPlayerStoryboardName = @"DropPlayerViewController";
 
-@interface HomeTableViewController (){
-	NSArray *trackArray;
-}
+// User Interface Constants
+NSString *const kDropPlayerTimeOutErrorTitle = @"Connection Timed Out";
+NSString *const kDropPlayerTimeOutErrorBody = @"Please ensure you are connected to the internet and try again!";
+
+NSString *const kDropPlayerUnexplainedErrorTitle = @"Unexpected Error";
+NSString *const kDropPlayerUnexplainedErrorBody = @"Something went wrong. If this error persists try removing the track and adding it again.";
+
+NSString *const kDropPlayerNoDropSelectedErrorTitle = @"You Didnt Select a Drop!";
+NSString *const kDropPlayerNoDropSelectedErrorBody = @"Make sure you click the \"Select Drop\" button once you are at the drop position!";
+
+@interface HomeTableViewController ()
+
+@property(nonatomic, retain) NSArray *trackArray;
 
 @end
 
@@ -42,7 +54,7 @@ NSString *const kDropPlayerStoryboardName = @"DropPlayerViewController";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [trackArray count];
+    return [self.trackArray count];
 }
 
 
@@ -50,7 +62,7 @@ NSString *const kDropPlayerStoryboardName = @"DropPlayerViewController";
     TrackTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"trackCell" forIndexPath:indexPath];
 	
 	// Get Pointer for Track associated with Specific Cell
-	TBDTrack *track = [trackArray objectAtIndex:indexPath.row];
+	TBDTrack *track = [self.trackArray objectAtIndex:indexPath.row];
 	
 	// Set Cell's Labels and image to track data
 	cell.trackTitle.text = [track name];
@@ -121,9 +133,45 @@ NSString *const kDropPlayerStoryboardName = @"DropPlayerViewController";
 #pragma mark - Data Interface
 
 -(void) giveTrackData:(NSArray *)tracks {
-	
+	self.trackArray = tracks;
+	[self.tableView reloadData];
 }
 
+-(void) giveTrack:(id)track withStatusCode:(DropTableStatus)statusCode {
+	switch (statusCode) {
+		case SUCCESS_DROP_SELECTED:
+			// New Drop Selected
+			// Add to Track List and Save to Disk
+			[self addNewTrackToArray:track];
+			break;
+		case SUCCESS_DROP_PLAYED:
+			// Track Played
+			// Do nothing
+			break;
+		case ERROR_TIMEOUT:
+			// Error Loading
+			// Display Timed Out Message
+			[self displayAlertWithMessageTitle:kDropPlayerTimeOutErrorTitle andbody:kDropPlayerTimeOutErrorBody];
+			break;
+		case ERROR_NO_DROP_SELECTED:
+			// Error User
+			// Closed Before
+			[self displayAlertWithMessageTitle:kDropPlayerNoDropSelectedErrorTitle andbody:kDropPlayerNoDropSelectedErrorBody];
+			break;
+		case ERROR_UNEXPLAINED:
+			// Something went terrible wrong
+			[self displayAlertWithMessageTitle:kDropPlayerUnexplainedErrorTitle andbody:kDropPlayerUnexplainedErrorBody];
+			break;
+		case OPTION_NEXT_TRACK:
+			
+			break;
+		case OPTION_PREV_TRACK:
+			
+			break;
+		default:
+			break;
+	}
+}
 
 // Selector for Notifcation To Add Track to Drop List
 //		Must Open Music Player to select drop location
@@ -138,9 +186,31 @@ NSString *const kDropPlayerStoryboardName = @"DropPlayerViewController";
 	[self.navigationController presentViewController:dropPlayer animated:YES completion:^{
 		// Add extra elemenets such as waveform and cancel all loading animations
 		[dropPlayer giveTrackForEditing:notis.object];
-		
 	}];
 	
+}
+
+-(void) addNewTrackToArray:(TBDTrack *)newTrack {
+	NSMutableArray *trackArrayPlusTrack = [self.trackArray mutableCopy];
+	[trackArrayPlusTrack addObject:newTrack];
+	self.trackArray = [trackArrayPlusTrack copy];
+	
+	// Reload TableView
+	[self.tableView reloadData];
+	
+	// Save New Data To Disk
+	[TBDFileIO SaveObjectsToFile:self.trackArray];
+}
+
+#pragma mark - User Interface
+
+-(void) displayAlertWithMessageTitle:(NSString *)title andbody:(NSString *)body {
+	UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:body preferredStyle:UIAlertControllerStyleActionSheet];
+	UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil];
+	
+	[alert addAction:dismissAction];
+ 
+	[self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

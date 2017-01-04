@@ -7,6 +7,7 @@
 //
 
 #import "DropPlayerViewController.h"
+#import "HomeTableViewController.h"
 #import "TBDTrack.h"
 #import "TBDAudioPlayer.h"
 #import "TBDHTTPRequest.h"
@@ -18,7 +19,6 @@ NSString *const kplayButtonAssetName = @"PlayButton";
 NSString *const kPauseButtonAssetName = @"PauseButton";
 
 @interface DropPlayerViewController ()
-
 
 @property(nonatomic, retain) TBDAudioPlayer *audioPlayer;
 @property(nonatomic, retain) TBDWaveformView *soundWaveImageView;
@@ -33,10 +33,7 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 - (void) viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-	
-	// Setup Background Controls
-	[[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
-	[self becomeFirstResponder];
+
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -73,6 +70,10 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 		// Set Player to Drop Position minus constant
 		// Todo: Settings page with setting to adjust pre-drop timing
 		
+		
+		// Get Remote Control Signals
+		[[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+		[self becomeFirstResponder];
 	}];
 }
 
@@ -99,6 +100,13 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 	[self dismissViewControllerAnimated:YES completion:^{
 		// On Completion Sent Home View Status
 		[self.audioPlayer pause];
+		
+		// If Editing Mode Display Error
+		if (self.editingMode) {
+			[self exitPlayerWithStatus:ERROR_NO_DROP_SELECTED];
+		}else{
+			[self exitPlayerWithStatus:SUCCESS_DROP_SELECTED];
+		}
 	}];
 	
 }
@@ -122,11 +130,15 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 	// Pause If playing
 	[self.audioPlayer pause];
 	TBDTrack *track = self.audioPlayer.track;
+	
 	// Set Track Drop Time to Current Time
 	track.dropTime = CMTimeGetSeconds(self.audioPlayer.player.currentTime);
+	
 	// Dismiss View Controller and Give Track to Home View
 	[self dismissViewControllerAnimated:YES completion:^{
-		
+		NSArray *view = self.navigationController.viewControllers;
+		HomeTableViewController *homeTableView = (HomeTableViewController *)[view objectAtIndex:1];
+		[homeTableView giveTrack:track withStatusCode:SUCCESS_DROP_SELECTED];
 	}];
 }
 
@@ -141,9 +153,7 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 -(void) setupNowPlayingInfo {
 	MPNowPlayingInfoCenter *infoCenter = [MPNowPlayingInfoCenter defaultCenter];
 	infoCenter.nowPlayingInfo =
-	[NSDictionary dictionaryWithObjectsAndKeys:self.trackTitleLabel.text, MPMediaItemPropertyTitle,
-	 self.trackArtistLabel.text, MPMediaItemPropertyArtist,
-	 nil];
+	[NSDictionary dictionaryWithObjectsAndKeys:self.trackTitleLabel.text, MPMediaItemPropertyTitle, self.trackArtistLabel.text, MPMediaItemPropertyArtist, self.trackArtWorkImageView.image, MPMediaItemPropertyArtwork,nil];
 
 }
 
@@ -160,15 +170,22 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 				break;
 			case UIEventSubtypeRemoteControlNextTrack:
 				NSLog(@"Next Track Pressed!");
+				self.editingMode ?  : [self exitPlayerWithStatus:OPTION_NEXT_TRACK]; // If Editing Mode - Do Nothing If Playing Mode Exit Player With StatusCode
 				break;
 			case UIEventSubtypeRemoteControlPreviousTrack:
 				NSLog(@"Previous Track Pressed!");
+				self.editingMode ?  : [self exitPlayerWithStatus:OPTION_PREV_TRACK]; // If Editing Mode - Do Nothing If Playing Mode Exit Player With StatusCode
 				break;
-				
 			default:
 				break;
 		}
 	}
+}
+
+-(void) exitPlayerWithStatus:(DropTableStatus)statusCode {
+	[self dismissViewControllerAnimated:YES completion:^{
+		[(HomeTableViewController *)self.navigationController.presentedViewController giveTrack:nil withStatusCode:statusCode];
+	}];
 }
 
 #pragma mark - UI Handlers
@@ -199,7 +216,7 @@ static int timeout = 0;
 			// 10 Seconds has gone by and still not done loading
 			// Probable Connection Issues
 			// Revert to Home Screen and Display Error
-			
+			[self exitPlayerWithStatus:ERROR_TIMEOUT];
 		}else {
 			[self performSelector:@selector(waitUntilLoadingCompleted) withObject:nil afterDelay:0.1f];
 		}
@@ -220,9 +237,13 @@ static int timeout = 0;
 	[self.soundWaveImageView setUserInteractionEnabled:true];
 	
 	// Enable Select Drop Button if applicable
-	if (self.editing) {
+	if (self.editingMode) {
 		[self.selectDropButton setHidden:false];
 	}
+	
+	// Create Notification to Observe if Audio reached end of track
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioPlayerDidFinishPlaying) name:AVPlayerItemDidPlayToEndTimeNotification object:self.audioPlayer.player.currentItem];
+
 }
 
 -(void) setupArtworkViewsFromURL:(NSURL *) url {
@@ -235,7 +256,9 @@ static int timeout = 0;
 		}else {
 			// Artwork Not Found - Display TBD Default Placeholder
 			
-			
+		}
+		if (!self.editingMode) {
+			[self setupNowPlayingInfo]; // Background Controls Information
 		}
 	}];
 }
@@ -264,7 +287,7 @@ static int timeout = 0;
 			[self.soundWaveImageView setFrame:CGRectMake(newBounds.origin.x, newBounds.origin.y, image.size.width, newBounds.size.height)];
 		}else {
 			// Soundwave Not Found - Revert to Home Screen with error
-			
+			[self exitPlayerWithStatus:ERROR_UNEXPLAINED];
 		}
 	}];
 }
@@ -293,5 +316,19 @@ static int timeout = 0;
 	return outImage;
 }
 
+#pragma mark - Notification Observer Selector
+
+-(void) audioPlayerDidFinishPlaying {
+	// If editing mode	- Allow
+	// If not			- Return to HomeScreen
+	if (self.editingMode) {
+		// Display Play Button
+		[self.playPauseButton setImage:[UIImage imageNamed:kplayButtonAssetName] forState:UIControlStateNormal];
+		// Pause Music
+		[self.audioPlayer pause];
+	}else{
+		[self exitPlayerWithStatus:SUCCESS_DROP_PLAYED];
+	}
+}
 
 @end
