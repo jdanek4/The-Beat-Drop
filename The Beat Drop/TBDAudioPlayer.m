@@ -43,7 +43,7 @@
 
 -(void) setToTime:(double)time {
 	[self pause];
-	[self.player seekToTime:CMTimeMake(time, 1)];
+	[self.player seekToTime:CMTimeMake(time, 1000)];
 }
 
 #pragma mark - Boolean Checks

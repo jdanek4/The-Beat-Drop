@@ -61,7 +61,7 @@
 
 	double distToCenter = superViewMiddle - origin.x;
 	
-	return (distToCenter / self.bounds.size.width) * (self.audioplayer.track.duration/1000.00f);
+	return (distToCenter / self.bounds.size.width) * (self.audioplayer.track.duration);
 }
 
 -(void) updateWaveFormViewLocation {
