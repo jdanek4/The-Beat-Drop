@@ -23,12 +23,12 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 @property(nonatomic, retain) TBDAudioPlayer *audioPlayer;
 @property(nonatomic, retain) TBDWaveformView *soundWaveImageView;
 @property(nonatomic, assign) BOOL editingMode;
+@property(nonatomic, assign) int timeout;
 
 @end
 
 
 @implementation DropPlayerViewController
-
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -37,6 +37,7 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 }
 
 -(void) viewDidAppear:(BOOL)animated {
+	self.timeout = 0;
 	[self performSelectorOnMainThread:@selector(loadingBegan) withObject:nil waitUntilDone:YES];
 }
 
@@ -67,10 +68,6 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 	NSLog(@"Playing: %@", track);
 	self.editingMode = false;
 	[self setupUIForTrack:track andOnCompletion:^{
-		// Set Player to Drop Position minus constant
-		// Todo: Settings page with setting to adjust pre-drop timing
-		
-		
 		// Get Remote Control Signals
 		[[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
 		[self becomeFirstResponder];
@@ -99,7 +96,6 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 	
 	[self dismissViewControllerAnimated:YES completion:^{
 		// On Completion Sent Home View Status
-		[self.audioPlayer pause];
 		
 		// If Editing Mode Display Error
 		if (self.editingMode) {
@@ -134,10 +130,12 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 	// Set Track Drop Time to Current Time
 	track.dropTime = CMTimeGetSeconds(self.audioPlayer.player.currentTime);
 	
+	// Pause Audio Player
+	[self.audioPlayer pause];
+
 	// Dismiss View Controller and Give Track to Home View
 	[self dismissViewControllerAnimated:YES completion:^{
-		NSArray *view = self.navigationController.viewControllers;
-		HomeTableViewController *homeTableView = (HomeTableViewController *)[view objectAtIndex:1];
+		HomeTableViewController *homeTableView = (HomeTableViewController *)[self homeTableViewCallback];
 		[homeTableView giveTrack:track withStatusCode:SUCCESS_DROP_SELECTED];
 	}];
 }
@@ -153,7 +151,12 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 -(void) setupNowPlayingInfo {
 	MPNowPlayingInfoCenter *infoCenter = [MPNowPlayingInfoCenter defaultCenter];
 	infoCenter.nowPlayingInfo =
-	[NSDictionary dictionaryWithObjectsAndKeys:self.trackTitleLabel.text, MPMediaItemPropertyTitle, self.trackArtistLabel.text, MPMediaItemPropertyArtist, self.trackArtWorkImageView.image, MPMediaItemPropertyArtwork,nil];
+	[NSDictionary dictionaryWithObjectsAndKeys:
+	 self.trackTitleLabel.text, MPMediaItemPropertyTitle,
+	 self.trackArtistLabel.text, MPMediaItemPropertyArtist,
+	 [[MPMediaItemArtwork alloc] initWithBoundsSize:self.trackArtWorkImageView.bounds.size requestHandler:^UIImage * _Nonnull(CGSize size) {
+		return self.trackArtWorkImageView.image;
+	}], MPMediaItemPropertyArtwork,nil];
 
 }
 
@@ -162,11 +165,13 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 		switch (event.subtype) {
 			case UIEventSubtypeRemoteControlPlay:
 				NSLog(@"Play Pressed!");
-				[self.audioPlayer play];
+				[self.audioPlayer pause];							// Ensure Audio Player is Paused
+				[self playPauseButtonPressed:self.playPauseButton]; // Simulate Play Button Pressed
 				break;
 			case UIEventSubtypeRemoteControlPause:
 				NSLog(@"Pause Pressed!");
-				[self.audioPlayer pause];
+				[self.audioPlayer play];							// Ensure Audio Player is Playing
+				[self playPauseButtonPressed:self.playPauseButton]; // Simulate Pause Button Pressed
 				break;
 			case UIEventSubtypeRemoteControlNextTrack:
 				NSLog(@"Next Track Pressed!");
@@ -183,8 +188,12 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 }
 
 -(void) exitPlayerWithStatus:(DropTableStatus)statusCode {
+	// Pause Audio Player
+	[self.audioPlayer pause];
+	
 	[self dismissViewControllerAnimated:YES completion:^{
-		[(HomeTableViewController *)self.navigationController.presentedViewController giveTrack:nil withStatusCode:statusCode];
+		HomeTableViewController *homeTableView = (HomeTableViewController *)[self homeTableViewCallback];
+		[homeTableView giveTrack:nil withStatusCode:statusCode];
 	}];
 }
 
@@ -205,14 +214,13 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 	[self.selectDropButton setHidden:true];
 }
 
-static int timeout = 0;
 -(void) waitUntilLoadingCompleted {
-	timeout += 1;
+	self.timeout += 1;
 	if(self.trackArtWorkImageView.image.size.width > 0 && [self.audioPlayer isDoneLoading]){
 		// All Done Loading
 		[self performSelectorOnMainThread:@selector(loadingEnded) withObject:nil waitUntilDone:false];
 	}else {
-		if(timeout >= 100){
+		if(self.timeout >= 100){
 			// 10 Seconds has gone by and still not done loading
 			// Probable Connection Issues
 			// Revert to Home Screen and Display Error
@@ -239,6 +247,14 @@ static int timeout = 0;
 	// Enable Select Drop Button if applicable
 	if (self.editingMode) {
 		[self.selectDropButton setHidden:false];
+	}else {
+		// Set Player to Drop Position minus constant
+		// Todo: Settings page with setting to adjust pre-drop timing
+		double bufferedDrop = (self.audioPlayer.track.dropTime - 15)*1000;
+		if (bufferedDrop < 0) bufferedDrop = 0;
+		
+		[self.audioPlayer setToTime:bufferedDrop];
+		[self.soundWaveImageView performSelector:@selector(updateWaveFormViewLocation) withObject:nil afterDelay:0.1f];
 	}
 	
 	// Create Notification to Observe if Audio reached end of track

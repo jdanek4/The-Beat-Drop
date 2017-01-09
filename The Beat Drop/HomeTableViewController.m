@@ -15,6 +15,7 @@
 
 // Storyboard Constants
 NSString *const kDropPlayerStoryboardName = @"DropPlayerViewController";
+NSString *const kCellIdentifier = @"trackCell";
 
 // User Interface Constants
 NSString *const kDropPlayerTimeOutErrorTitle = @"Connection Timed Out";
@@ -25,6 +26,7 @@ NSString *const kDropPlayerUnexplainedErrorBody = @"Something went wrong. If thi
 
 NSString *const kDropPlayerNoDropSelectedErrorTitle = @"You Didnt Select a Drop!";
 NSString *const kDropPlayerNoDropSelectedErrorBody = @"Make sure you click the \"Select Drop\" button once you are at the drop position!";
+
 
 @interface HomeTableViewController ()
 
@@ -40,6 +42,9 @@ NSString *const kDropPlayerNoDropSelectedErrorBody = @"Make sure you click the \
 	// Setup Notification Center Selector To Respond to SoundCloud Search/Selection Table View
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectedSoundCloudtrack:) name:@"selectedSoundCloudtrack" object:nil];
 	
+	
+	// Register Custom TableViewCell to be used as Reuseable cell
+	[self.tableView registerNib:[UINib nibWithNibName:@"TrackTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifier];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,7 +64,7 @@ NSString *const kDropPlayerNoDropSelectedErrorBody = @"Make sure you click the \
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TrackTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"trackCell" forIndexPath:indexPath];
+    TrackTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
 	
 	// Get Pointer for Track associated with Specific Cell
 	TBDTrack *track = [self.trackArray objectAtIndex:indexPath.row];
@@ -83,6 +88,17 @@ NSString *const kDropPlayerNoDropSelectedErrorBody = @"Make sure you click the \
 	}];
 	
     return cell;
+}
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	DropPlayerViewController *dropPlayer = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:kDropPlayerStoryboardName];
+
+	[self.navigationController presentViewController:dropPlayer animated:YES completion:^{
+		// Add extra elemenets such as waveform and cancel all loading animations
+		[dropPlayer giveTrackForPlaying:[self.trackArray objectAtIndex:indexPath.row]];
+		dropPlayer.homeTableViewCallback = self;
+	}];
 }
 
 
@@ -177,7 +193,6 @@ NSString *const kDropPlayerNoDropSelectedErrorBody = @"Make sure you click the \
 //		Must Open Music Player to select drop location
 //		Then add track to tracklist
 -(void) selectedSoundCloudtrack:(NSNotification *)notis {
-	NSLog(@"%@", notis.object);
 	
 	// Create View Controller from Storyboard ID
 	DropPlayerViewController *dropPlayer = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:kDropPlayerStoryboardName];
@@ -186,6 +201,7 @@ NSString *const kDropPlayerNoDropSelectedErrorBody = @"Make sure you click the \
 	[self.navigationController presentViewController:dropPlayer animated:YES completion:^{
 		// Add extra elemenets such as waveform and cancel all loading animations
 		[dropPlayer giveTrackForEditing:notis.object];
+		dropPlayer.homeTableViewCallback = self;
 	}];
 	
 }

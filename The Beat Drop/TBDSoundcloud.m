@@ -80,7 +80,7 @@ NSString *const kSoundcloudFormatJSON =			@"&format=json";					// Request Respon
 }
 
 +(NSURL *) URLToRequestInfoForTrack:(int)trackID {
-	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%i%@", kSoundcloudPrefix,kSoundcloudTrack,trackID,kSoundcloudSuffix]];
+	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/%i%@", kSoundcloudPrefix,kSoundcloudTrack,trackID,kSoundcloudSuffix]];
 }
 +(NSURL *) URLToRequestSearchQuery:(NSString *)search {
 	return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@%@%@%@%@%@", kSoundcloudPrefix,kSoundcloudTrack,kSoundcloudSuffix,kSoundcloudSearchString,search,kSoundcloudSearchLimit,kSoundcloudStreamableFilter,kSoundcloudFormatJSON]];

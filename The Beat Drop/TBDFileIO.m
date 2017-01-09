@@ -61,8 +61,6 @@ NSString *const kTrackIDKey = @"TrackID";
 		temp.trackID = [[dropData objectForKey:kTrackIDKey] intValue];
 		temp.dropTime = [[dropData objectForKey:kTrackDropTimeKey] doubleValue];
 		
-		[trackArray addObject:temp];
-		
 		// Request Track from Soundcloud and then verify saved data matches received data to ensure consistancy
 		
 		[TBDSoundcloud GetTrackInfoFromID:[[dropData objectForKey:kTrackIDKey] intValue] OnCompletion:^(TBDTrack *track) {

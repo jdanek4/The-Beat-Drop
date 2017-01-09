@@ -56,7 +56,7 @@
 	
 	// Check if AVPlayer thinks its ready
 	//		Not A Completely Viable Solution as AVPlayer thinks its ready before actually being able to play the item.
-	//		Good as a quick check before intensive check happens next
+	//		Good as a quick check before more taxing check
 	
 	if (self.player.status != AVPlayerStatusReadyToPlay) {
 		return false;
@@ -81,16 +81,20 @@
 - (NSTimeInterval) playableDuration
 {
 	AVPlayerItem * item = self.player.currentItem;
-	
+	double loadedLength = 0;
 	if (item.status == AVPlayerItemStatusReadyToPlay) {
 		NSArray * timeRangeArray = item.loadedTimeRanges;
 		
-		CMTimeRange aTimeRange = [[timeRangeArray objectAtIndex:0] CMTimeRangeValue];
+		for (int i = 0; i < [timeRangeArray count]; i++) {
+			CMTimeRange aTimeRange = [[timeRangeArray objectAtIndex:i] CMTimeRangeValue];
+			
+			double startTime = CMTimeGetSeconds(aTimeRange.start);
+			double loadedDuration = CMTimeGetSeconds(aTimeRange.duration);
+			
+			loadedLength += (NSTimeInterval)(startTime + loadedDuration);
+		}
 		
-		double startTime = CMTimeGetSeconds(aTimeRange.start);
-		double loadedDuration = CMTimeGetSeconds(aTimeRange.duration);
-		
-		return (NSTimeInterval)(startTime + loadedDuration);
+		return (loadedLength);
 	}
 	else
 	{
@@ -106,22 +110,28 @@
 	
 	NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:nil];
 	
+	// Perform Get request to URL to retrieve URL of audio data
 	[[session dataTaskWithURL:url
 			completionHandler:^(NSData *data,
 								NSURLResponse *response,
 								NSError *error) {
-				
+				// Repsonded with Audio Data URL
+				[self setupPlayerForTrackURL:response.URL];
 			}] resume];
 }
 
 -(void) URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task willPerformHTTPRedirection:(NSHTTPURLResponse *)response newRequest:(NSURLRequest *)request completionHandler:(void (^)(NSURLRequest * _Nullable))completionHandler {
+	// Request Returned with a New URL to request again
+	// Method makes second request and returns value
 	
-	// Recieved redirection Audio URL
-	[self.track setStreamURL:request.URL];
-	self.player = [[AVPlayer alloc] initWithURL:self.track.streamURL];
+	[self setupPlayerForTrackURL:request.URL];
 
 }
 
+-(void) setupPlayerForTrackURL:(NSURL *)url {
+	[self.track setStreamURL:url];
+	self.player = [[AVPlayer alloc] initWithURL:self.track.streamURL];
+}
 
 
 @end

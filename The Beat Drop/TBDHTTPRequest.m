@@ -42,9 +42,9 @@
 	// TODO : Update to NSURLSession
 	
 	NSHTTPURLResponse *responseCode = nil;
-	NSMutableURLRequest *request = [self buildGetURLRequestForURL:url];
+	NSMutableURLRequest *request = [self buildURLForHTTPGetRequestFromURL:url];
 	
-	NSError *error = [[NSError alloc] init];
+	NSError *error = nil;
 	
 	#pragma clang diagnostic push
 	#pragma clang diagnostic ignored "-Wdeprecated-declarations"
@@ -64,7 +64,7 @@
 
 #pragma mark - Object Builder
 
-+(NSMutableURLRequest *) buildGetURLRequestForURL:(NSURL *)url {
++(NSMutableURLRequest *) buildURLForHTTPGetRequestFromURL:(NSURL *)url {
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 	[request setHTTPMethod:@"GET"];
 	[request setURL:url];

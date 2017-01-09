@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundArtworkImageView;
 @property (weak, nonatomic) IBOutlet UIButton *selectDropButton;
 
+@property (nonatomic, weak) id homeTableViewCallback;
+
 
 -(void) giveTrackForEditing:(id)track;
 -(void) giveTrackForPlaying:(id)track;
