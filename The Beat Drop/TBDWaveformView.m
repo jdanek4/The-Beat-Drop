@@ -11,6 +11,7 @@
 @interface TBDWaveformView ()
 
 @property (nonatomic, assign) bool wasPlaying;
+@property (nonatomic, assign) double refreshRate;
 
 @end
 
@@ -74,8 +75,18 @@
 	
 	if([self.audioplayer isPlaying]){
 		// TODO: PerformSelector With Delay (Delay is fixed rate per song calculated from the length of the song)
-		[self performSelectorInBackground:@selector(updateWaveFormViewLocation) withObject:nil];
+		[self performSelector:@selector(updateWaveFormViewLocation) withObject:nil afterDelay:[self getRefreshTimeForTrack]];
 	}
+}
+
+-(double) getRefreshTimeForTrack {
+	if (self.refreshRate == 0) {
+		self.refreshRate = (self.frame.size.width / self.audioplayer.track.duration);
+		if (self.refreshRate >= 0.1) {
+			self.refreshRate = 0.05;
+		}
+	}
+	return self.refreshRate;
 }
 
 @end
