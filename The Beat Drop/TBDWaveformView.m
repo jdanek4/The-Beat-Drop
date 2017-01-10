@@ -50,7 +50,7 @@
 	[self.audioplayer setToTime:[self getWaveformPosition]];
 	if (self.wasPlaying) {
 		[self.audioplayer play];
-		[self updateWaveFormViewLocation];
+		[self performSelector:@selector(updateWaveFormViewLocation) withObject:nil afterDelay:0.01f]; // Fixes Soundwave Stutter on Touch Release
 	}
 }
 
