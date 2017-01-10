@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TrackTableViewCell.h"
 
 typedef enum DropTableStatus {
 	ERROR_NO_DROP_SELECTED = 1,
@@ -18,7 +19,7 @@ typedef enum DropTableStatus {
 	OPTION_NEXT_TRACK
 } DropTableStatus;
 
-@interface HomeTableViewController : UITableViewController
+@interface HomeTableViewController : UITableViewController <TrackTableGestureDelegate>
 
 
 -(void) giveTrackData:(NSArray *)tracks;

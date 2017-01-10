@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TrackTableGestureDelegate.h"
 
 @interface TrackTableViewCell : UITableViewCell
 
+@property (strong, nonatomic) IBOutlet UILongPressGestureRecognizer *longPressGesture;
 @property (weak, nonatomic) IBOutlet UILabel *trackTitle;
 @property (weak, nonatomic) IBOutlet UILabel *trackArtist;
 @property (weak, nonatomic) IBOutlet UIImageView *trackArtwork;
-
+@property(nonatomic, weak) id<TrackTableGestureDelegate> delegate;
 
 @end

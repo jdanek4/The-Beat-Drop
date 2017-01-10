@@ -84,6 +84,7 @@
 		AB9131921DB2FFEB0038BCAF /* TBDUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDUser.m; sourceTree = "<group>"; };
 		AB9131961DB320C90038BCAF /* NSDictionary+ExceptionHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ExceptionHandling.h"; sourceTree = "<group>"; };
 		AB9131971DB320C90038BCAF /* NSDictionary+ExceptionHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ExceptionHandling.m"; sourceTree = "<group>"; };
+		AB973FFC1E25365B00655AB2 /* TrackTableGestureDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackTableGestureDelegate.h; sourceTree = "<group>"; };
 		ABACEF0F1DB7B49000417E5F /* TBDAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDAudioPlayer.h; sourceTree = "<group>"; };
 		ABACEF101DB7B49000417E5F /* TBDAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDAudioPlayer.m; sourceTree = "<group>"; };
 		ABAE263A1DBB006F00AC83DF /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
@@ -275,6 +276,14 @@
 			name = NSDictionary;
 			sourceTree = "<group>";
 		};
+		AB973FFA1E25362300655AB2 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				AB973FFC1E25365B00655AB2 /* TrackTableGestureDelegate.h */,
+			);
+			name = Delegate;
+			sourceTree = "<group>";
+		};
 		ABACEF0E1DB7B45400417E5F /* Audio Player */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,6 +345,7 @@
 		ABB583B61DCBD10B001A4806 /* TrackTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				AB973FFA1E25362300655AB2 /* Delegate */,
 				AB01093F1DDBAD4700D88D1F /* TrackTableViewCell.h */,
 				AB0109401DDBAD4700D88D1F /* TrackTableViewCell.m */,
 				AB0109411DDBAD4700D88D1F /* TrackTableViewCell.xib */,

@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="atn-vd-3zG" id="uTt-9J-wNC">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -59,12 +59,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="PD2-Dp-Vc4" kind="presentation" identifier="SplashScreenDone" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="flh-ky-uJ2"/>
+                        <segue destination="PD2-Dp-Vc4" kind="presentation" identifier="SplashScreenDone" id="PeW-PI-HyU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMy-Qb-DdN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1416" y="80"/>
+            <point key="canvasLocation" x="-1415" y="81"/>
         </scene>
         <!--Drop Player View Controller-->
         <scene sceneID="cUt-tt-Hor">
@@ -214,7 +214,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7oJ-ab-g24" id="qVm-aH-5Mu">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -239,7 +239,7 @@
         <!--Navigation Controller-->
         <scene sceneID="HPI-9d-DaN">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PD2-Dp-Vc4" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeTableViewNavController" automaticallyAdjustsScrollViewInsets="NO" id="PD2-Dp-Vc4" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="IkK-YL-hTu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

@@ -8,7 +8,6 @@
 
 #import "HomeTableViewController.h"
 #import "TBDTrack.h"
-#import "TrackTableViewCell.h"
 #import "TBDHTTPRequest.h"
 #import "DropPlayerViewController.h"
 #import "TBDFileIO.h"
@@ -45,6 +44,12 @@ NSString *const kDropPlayerNoDropSelectedErrorBody = @"Make sure you click the \
 	
 	// Register Custom TableViewCell to be used as Reuseable cell
 	[self.tableView registerNib:[UINib nibWithNibName:@"TrackTableViewCell" bundle:nil] forCellReuseIdentifier:kCellIdentifier];
+	
+	// Allow View to Control Presented Views
+	self.definesPresentationContext = true;
+	
+	// Allow selection while in editing mode - This is an easy way to disable editing mode
+	self.tableView.allowsSelectionDuringEditing = true;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,6 +77,9 @@ NSString *const kDropPlayerNoDropSelectedErrorBody = @"Make sure you click the \
 	// Set Cell's Labels and image to track data
 	cell.trackTitle.text = [track name];
 	cell.trackArtist.text = [track artist];
+	
+	// Set Cell's Delegate to self to ensure customg gesture selectors are called when applicable
+	cell.delegate = self;
 	
 	// Request Track's artwork from soundcloud. Leave image blank until request returns a value
 	cell.trackArtwork.image = NULL;
@@ -101,41 +109,53 @@ NSString *const kDropPlayerNoDropSelectedErrorBody = @"Make sure you click the \
 	}];
 }
 
+-(void) trackTableViewCell:(TrackTableViewCell *)track didReceiveLongPress:(UILongPressGestureRecognizer *)gesture {
+	// Long Pressed Recognized for cell
+	UIAlertController *trackOptions = [UIAlertController alertControllerWithTitle:@"Track Options" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+	UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+		// Delete Track Called
+		NSIndexPath* pathOfCell = [self.tableView indexPathForCell:track];
+		[self removeTrackFromArray:[self.trackArray objectAtIndex:pathOfCell.row]];
+	}];
+	UIAlertAction *moveAction = [UIAlertAction actionWithTitle:@"Move" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+		// Move Track Called
+		[self.tableView setEditing:true];
+	}];
+	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+	[trackOptions addAction:deleteAction];
+	[trackOptions addAction:moveAction];
+	[trackOptions addAction:cancelAction];
+	
+	[trackOptions setModalPresentationStyle:UIModalPresentationFormSheet];
+	
+	[self presentViewController:trackOptions animated:YES completion:^{
+		// Did Present Track Options Menu
+		
+	}];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+	TBDTrack *from  = [self.trackArray objectAtIndex:fromIndexPath.row];
+	
+	NSMutableArray *trackArray = [self.trackArray mutableCopy];
+	
+	[trackArray replaceObjectAtIndex:fromIndexPath.row withObject:[self.trackArray objectAtIndex:toIndexPath.row]];
+	[trackArray replaceObjectAtIndex:toIndexPath.row withObject:from];
+	
+	self.trackArray = trackArray;
+	
+	// Save New Data To Disk
+	[TBDFileIO SaveObjectsToFile:self.trackArray];
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+	return UITableViewCellEditingStyleNone;
 }
-*/
-
+- (BOOL)tableView:(UITableView *)tableview shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+	return NO;
+}
 
 
 
@@ -218,10 +238,22 @@ NSString *const kDropPlayerNoDropSelectedErrorBody = @"Make sure you click the \
 	[TBDFileIO SaveObjectsToFile:self.trackArray];
 }
 
+-(void) removeTrackFromArray:(TBDTrack *)track {
+	NSMutableArray *trackArrayPlusTrack = [self.trackArray mutableCopy];
+	[trackArrayPlusTrack removeObject:track];
+	self.trackArray = [trackArrayPlusTrack copy];
+	
+	// Reload TableView
+	[self.tableView reloadData];
+	
+	// Save Data To Disk
+	[TBDFileIO SaveObjectsToFile:self.trackArray];
+}
+
 #pragma mark - User Interface
 
 -(void) displayAlertWithMessageTitle:(NSString *)title andbody:(NSString *)body {
-	UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:body preferredStyle:UIAlertControllerStyleActionSheet];
+	UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:body preferredStyle:UIAlertControllerStyleAlert];
 	UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:nil];
 	
 	[alert addAction:dismissAction];

@@ -12,13 +12,20 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+	
+    // Initialization Long Press Gesture Recognizer
+	self.longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureRecognized:)];
+	[self addGestureRecognizer:self.longPressGesture];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)longPressGestureRecognized:(UILongPressGestureRecognizer *)sender {
+	[self.delegate trackTableViewCell:self didReceiveLongPress:sender];
 }
 
 @end
