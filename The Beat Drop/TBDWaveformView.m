@@ -82,6 +82,9 @@
 -(double) getRefreshTimeForTrack {
 	if (self.refreshRate == 0) {
 		self.refreshRate = 1 / ((self.frame.size.width / (self.audioplayer.track.duration / 1000.0f)) * 2);
+		if(self.refreshRate < 0.01){ // Dont refresh faster than 100 times per second - Theoretical max refresh rate of ios screen is 60
+			self.refreshRate = 0.01f;
+		}
 	}
 	return self.refreshRate;
 }
