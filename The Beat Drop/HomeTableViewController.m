@@ -18,7 +18,7 @@ NSString *const kCellIdentifier = @"trackCell";
 
 // User Interface Constants
 NSString *const kDropPlayerTimeOutErrorTitle = @"Connection Timed Out";
-NSString *const kDropPlayerTimeOutErrorBody = @"Please ensure you are connected to the internet and try again!";
+NSString *const kDropPlayerTimeOutErrorBody = @"You may not have a good connection to the internet, or the song you are trying to play is too large.";
 
 NSString *const kDropPlayerUnexplainedErrorTitle = @"Unexpected Error";
 NSString *const kDropPlayerUnexplainedErrorBody = @"Something went wrong. If this error persists try removing the track and adding it again.";

@@ -81,10 +81,7 @@
 
 -(double) getRefreshTimeForTrack {
 	if (self.refreshRate == 0) {
-		self.refreshRate = (self.frame.size.width / self.audioplayer.track.duration);
-		if (self.refreshRate >= 0.1) {
-			self.refreshRate = 0.05;
-		}
+		self.refreshRate = 1 / ((self.frame.size.width / (self.audioplayer.track.duration / 1000.0f)) * 2);
 	}
 	return self.refreshRate;
 }
