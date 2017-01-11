@@ -73,7 +73,7 @@ NSString *const cellIdentifier = @"trackCell";
 	cell.trackArtist.text = [track artist];
 	
 	// Request Track's artwork from soundcloud. Leave image blank until request returns a value
-	cell.trackArtwork.image = NULL;
+	cell.trackArtwork.image = nil;
 	
 	[TBDHTTPRequest GetRequestForImageFromURL:[track getSamllArtworkURL] CompletionHandler:^(UIImage *image) {
 		if(image.size.width > 0){
@@ -83,7 +83,7 @@ NSString *const cellIdentifier = @"trackCell";
 			// Image not received
 			// Usually due to no artwork on soundcloud
 			// Set to TBD placeholder
-			
+			cell.trackArtwork.image = [UIImage imageNamed:@"Artwork"];
 		}
 	}];
 	

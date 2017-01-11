@@ -272,7 +272,8 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 			self.trackArtWorkImageView.image = [image copy];
 		}else {
 			// Artwork Not Found - Display TBD Default Placeholder
-			
+			self.backgroundArtworkImageView.image =	[UIImage imageNamed:@"Artwork"];
+			self.trackArtWorkImageView.image =	[UIImage imageNamed:@"Artwork"];
 		}
 		if (!self.editingMode) {
 			[self setupNowPlayingInfo]; // Background Controls Information

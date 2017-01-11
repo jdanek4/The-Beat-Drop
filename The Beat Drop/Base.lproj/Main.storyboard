@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="atn-vd-3zG" id="uTt-9J-wNC">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -34,6 +34,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="The Beat Drop" id="jgx-oj-ZBl">
+                        <barButtonItem key="leftBarButtonItem" image="gear" id="cNw-4O-tnT">
+                            <color key="tintColor" red="0.15094763040542603" green="0.51757621765136719" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="g0Z-1s-Qwv" kind="popoverPresentation" popoverAnchorBarButtonItem="cNw-4O-tnT" id="5Hh-IR-Cgi">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="gx7-Tk-Mv8">
                             <connections>
                                 <segue destination="TKE-Da-HVZ" kind="show" id="eAQ-by-AHk"/>
@@ -66,6 +74,24 @@
             </objects>
             <point key="canvasLocation" x="-1415" y="81"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Gbv-vv-ZIQ">
+            <objects>
+                <viewController id="g0Z-1s-Qwv" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pid-jC-M1Z"/>
+                        <viewControllerLayoutGuide type="bottom" id="WMO-e1-Lyn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xmn-eo-dyh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sIb-sy-igD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="538" y="962"/>
+        </scene>
         <!--Drop Player View Controller-->
         <scene sceneID="cUt-tt-Hor">
             <objects>
@@ -97,13 +123,13 @@
                                                 <action selector="closeButtonPressed:" destination="sCA-I9-IZS" eventType="touchUpInside" id="lXu-Zs-Khj"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beautiful Now" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmp-7e-W8T">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wmp-7e-W8T">
                                             <rect key="frame" x="20" y="413" width="335" height="23"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                             <color key="textColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zedd" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PM8-OK-Pud">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PM8-OK-Pud">
                                             <rect key="frame" x="20" y="444" width="335" height="23"/>
                                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="19"/>
                                             <color key="textColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -199,7 +225,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="chk-I4-xXp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1784.057971014493" y="886.14130434782612"/>
+            <point key="canvasLocation" x="1545" y="931"/>
         </scene>
         <!--SoundCloud-->
         <scene sceneID="NOX-iy-Uq6">
@@ -214,7 +240,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7oJ-ab-g24" id="qVm-aH-5Mu">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -276,5 +302,6 @@
     <resources>
         <image name="PlayButton" width="66" height="66"/>
         <image name="PlayerPosition" width="1" height="100"/>
+        <image name="gear" width="25" height="25"/>
     </resources>
 </document>

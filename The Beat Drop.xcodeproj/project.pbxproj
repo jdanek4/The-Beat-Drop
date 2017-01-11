@@ -31,6 +31,7 @@
 		ABAE26461DBB117D00AC83DF /* SplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAE26451DBB117D00AC83DF /* SplashScreenViewController.m */; };
 		ABB9F5F21DB00D42008A2A00 /* TBDSoundcloud.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB9F5F11DB00D42008A2A00 /* TBDSoundcloud.m */; };
 		ABB9F5F41DB00D7C008A2A00 /* SoundcloudTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB9F5F31DB00D7C008A2A00 /* SoundcloudTest.m */; };
+		ABD7A9991E25C23C00F12F61 /* TBDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD7A9981E25C23C00F12F61 /* TBDSettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,8 @@
 		ABB9F5F01DB00D42008A2A00 /* TBDSoundcloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDSoundcloud.h; sourceTree = "<group>"; };
 		ABB9F5F11DB00D42008A2A00 /* TBDSoundcloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDSoundcloud.m; sourceTree = "<group>"; };
 		ABB9F5F31DB00D7C008A2A00 /* SoundcloudTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundcloudTest.m; sourceTree = "<group>"; };
+		ABD7A9971E25C23C00F12F61 /* TBDSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDSettingsViewController.h; sourceTree = "<group>"; };
+		ABD7A9981E25C23C00F12F61 /* TBDSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDSettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +299,7 @@
 		ABAE26361DBAFFA500AC83DF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				ABD7A9961E25C1E600F12F61 /* Settings */,
 				ABAE26391DBB003D00AC83DF /* DropPlayer */,
 				ABB583B61DCBD10B001A4806 /* TrackTableViewCell */,
 				ABAE26431DBB117200AC83DF /* Splash Screen */,
@@ -360,6 +364,15 @@
 				ABB9F5F11DB00D42008A2A00 /* TBDSoundcloud.m */,
 			);
 			name = "Soundcloud API";
+			sourceTree = "<group>";
+		};
+		ABD7A9961E25C1E600F12F61 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				ABD7A9971E25C23C00F12F61 /* TBDSettingsViewController.h */,
+				ABD7A9981E25C23C00F12F61 /* TBDSettingsViewController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -513,6 +526,7 @@
 				AB57F0CE1E0E19210091B0CD /* Reachability.m in Sources */,
 				ABAE263C1DBB006F00AC83DF /* HomeTableViewController.m in Sources */,
 				AB64F72D1DAE8512002BC4F0 /* main.m in Sources */,
+				ABD7A9991E25C23C00F12F61 /* TBDSettingsViewController.m in Sources */,
 				AB91318E1DB2FB820038BCAF /* TBDTrack.m in Sources */,
 				AB6C0A481E0E156F00B4DB24 /* TBDReachability.m in Sources */,
 				ABB9F5F21DB00D42008A2A00 /* TBDSoundcloud.m in Sources */,

@@ -82,7 +82,7 @@ NSString *const kDropPlayerNoDropSelectedErrorBody = @"Make sure you click the \
 	cell.delegate = self;
 	
 	// Request Track's artwork from soundcloud. Leave image blank until request returns a value
-	cell.trackArtwork.image = NULL;
+	cell.trackArtwork.image = nil;
 	[TBDHTTPRequest GetRequestForImageFromURL:[track artworkURL] CompletionHandler:^(UIImage *image) {
 		if(image.size.width > 0){
 			// Image received
@@ -91,7 +91,7 @@ NSString *const kDropPlayerNoDropSelectedErrorBody = @"Make sure you click the \
 			// Image not received
 			// Usually due to no artwork on soundcloud
 			// Set to placeholder image
-			
+			cell.trackArtwork.image = [UIImage imageNamed:@"Artwork"];
 		}
 	}];
 	
