@@ -12,6 +12,7 @@
 #import "TBDAudioPlayer.h"
 #import "TBDHTTPRequest.h"
 #import "TBDWaveformView.h"
+#import "TBDUserDefaults.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -250,8 +251,7 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 		[self.selectDropButton setHidden:false];
 	}else {
 		// Set Player to Drop Position minus constant
-		// Todo: Settings page with setting to adjust pre-drop timing
-		double bufferedDrop = (self.audioPlayer.track.dropTime - 15)*1000;
+		double bufferedDrop = (self.audioPlayer.track.dropTime - [TBDUserDefaults GetDropBuildUpTime])*1000;
 		if (bufferedDrop < 0) bufferedDrop = 0;
 		
 		[self.audioPlayer setToTime:bufferedDrop];

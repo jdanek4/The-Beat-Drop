@@ -74,7 +74,6 @@
 	self.center = currentPosition;
 	
 	if([self.audioplayer isPlaying]){
-		// TODO: PerformSelector With Delay (Delay is fixed rate per song calculated from the length of the song)
 		[self performSelector:@selector(updateWaveFormViewLocation) withObject:nil afterDelay:[self getRefreshTimeForTrack]];
 	}
 }

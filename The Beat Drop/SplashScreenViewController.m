@@ -9,6 +9,7 @@
 #import "SplashScreenViewController.h"
 #import "HomeTableViewController.h"
 #import "TBDFileIO.h"
+#import "TBDUserDefaults.h"
 
 @interface SplashScreenViewController ()
 
@@ -20,6 +21,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 	
+	if ([TBDUserDefaults IsFirstTimeLaunching]) {
+		// First Time Launching - Show tutorial Screen
+		// Todo: Create Tutorial pages
+	}
 	
 	if([TBDFileIO DoesFileExist]){
 		// Ensure Playability of Saved Songs

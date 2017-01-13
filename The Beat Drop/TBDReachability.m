@@ -8,17 +8,18 @@
 
 #import "TBDReachability.h"
 #import "Reachability.h"
+#import "TBDUserDefaults.h"
 
 @implementation TBDReachability
 
+static int kQualityOverride = 0;
 
 /// Block Handler used to differentiate between different network statuses
 +(void) PerformBlockWithNetworkConsideration:(void (^)(NSInteger status))handler {
 	
-	// Check if High Quality Setting is Enabled (TODO: Implement Settings Page)
-	
-	if (/* Setting checked */ false) {
-		handler(2);
+	// Check if High Quality Setting is Enabled
+	if ([TBDUserDefaults GetEnforceHiResImageSetting]) {
+		kQualityOverride = 1;
 	}
 	
 	//
@@ -31,7 +32,7 @@
 			handler(0);
 			break;
 		case ReachableViaWWAN:
-			handler(1);
+			handler(1+kQualityOverride);
 			break;
 		case ReachableViaWiFi:
 			handler(2);

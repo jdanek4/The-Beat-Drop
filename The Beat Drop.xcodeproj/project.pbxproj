@@ -29,9 +29,10 @@
 		ABAE263F1DBB008300AC83DF /* SoundcloudSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAE263E1DBB008300AC83DF /* SoundcloudSearchTableViewController.m */; };
 		ABAE26421DBB00A400AC83DF /* DropPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAE26411DBB00A400AC83DF /* DropPlayerViewController.m */; };
 		ABAE26461DBB117D00AC83DF /* SplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAE26451DBB117D00AC83DF /* SplashScreenViewController.m */; };
+		ABB3170B1E27D27C00DE4CD3 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB3170A1E27D27C00DE4CD3 /* SettingsViewController.m */; };
+		ABB3170F1E27E9CA00DE4CD3 /* TBDUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB3170E1E27E9CA00DE4CD3 /* TBDUserDefaults.m */; };
 		ABB9F5F21DB00D42008A2A00 /* TBDSoundcloud.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB9F5F11DB00D42008A2A00 /* TBDSoundcloud.m */; };
 		ABB9F5F41DB00D7C008A2A00 /* SoundcloudTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB9F5F31DB00D7C008A2A00 /* SoundcloudTest.m */; };
-		ABD7A9991E25C23C00F12F61 /* TBDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABD7A9981E25C23C00F12F61 /* TBDSettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,11 +97,13 @@
 		ABAE26411DBB00A400AC83DF /* DropPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropPlayerViewController.m; sourceTree = "<group>"; };
 		ABAE26441DBB117D00AC83DF /* SplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreenViewController.h; sourceTree = "<group>"; };
 		ABAE26451DBB117D00AC83DF /* SplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreenViewController.m; sourceTree = "<group>"; };
+		ABB317091E27D27C00DE4CD3 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		ABB3170A1E27D27C00DE4CD3 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		ABB3170D1E27E9CA00DE4CD3 /* TBDUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDUserDefaults.h; sourceTree = "<group>"; };
+		ABB3170E1E27E9CA00DE4CD3 /* TBDUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDUserDefaults.m; sourceTree = "<group>"; };
 		ABB9F5F01DB00D42008A2A00 /* TBDSoundcloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDSoundcloud.h; sourceTree = "<group>"; };
 		ABB9F5F11DB00D42008A2A00 /* TBDSoundcloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDSoundcloud.m; sourceTree = "<group>"; };
 		ABB9F5F31DB00D7C008A2A00 /* SoundcloudTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundcloudTest.m; sourceTree = "<group>"; };
-		ABD7A9971E25C23C00F12F61 /* TBDSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDSettingsViewController.h; sourceTree = "<group>"; };
-		ABD7A9981E25C23C00F12F61 /* TBDSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDSettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,6 +349,15 @@
 			name = "Splash Screen";
 			sourceTree = "<group>";
 		};
+		ABB3170C1E27D28000DE4CD3 /* User Settings */ = {
+			isa = PBXGroup;
+			children = (
+				ABB3170D1E27E9CA00DE4CD3 /* TBDUserDefaults.h */,
+				ABB3170E1E27E9CA00DE4CD3 /* TBDUserDefaults.m */,
+			);
+			name = "User Settings";
+			sourceTree = "<group>";
+		};
 		ABB583B61DCBD10B001A4806 /* TrackTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,8 +381,9 @@
 		ABD7A9961E25C1E600F12F61 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				ABD7A9971E25C23C00F12F61 /* TBDSettingsViewController.h */,
-				ABD7A9981E25C23C00F12F61 /* TBDSettingsViewController.m */,
+				ABB3170C1E27D28000DE4CD3 /* User Settings */,
+				ABB317091E27D27C00DE4CD3 /* SettingsViewController.h */,
+				ABB3170A1E27D27C00DE4CD3 /* SettingsViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -515,7 +528,9 @@
 				AB9131931DB2FFEB0038BCAF /* TBDUser.m in Sources */,
 				AB0109421DDBAD4700D88D1F /* TrackTableViewCell.m in Sources */,
 				AB8D75041DCADDE2005EA6CB /* TBDFileIO.m in Sources */,
+				ABB3170B1E27D27C00DE4CD3 /* SettingsViewController.m in Sources */,
 				ABAE26421DBB00A400AC83DF /* DropPlayerViewController.m in Sources */,
+				ABB3170F1E27E9CA00DE4CD3 /* TBDUserDefaults.m in Sources */,
 				AB677CB31E17001700C422C2 /* TBDWaveformView.m in Sources */,
 				ABAE263F1DBB008300AC83DF /* SoundcloudSearchTableViewController.m in Sources */,
 				ABAE26461DBB117D00AC83DF /* SplashScreenViewController.m in Sources */,
@@ -526,7 +541,6 @@
 				AB57F0CE1E0E19210091B0CD /* Reachability.m in Sources */,
 				ABAE263C1DBB006F00AC83DF /* HomeTableViewController.m in Sources */,
 				AB64F72D1DAE8512002BC4F0 /* main.m in Sources */,
-				ABD7A9991E25C23C00F12F61 /* TBDSettingsViewController.m in Sources */,
 				AB91318E1DB2FB820038BCAF /* TBDTrack.m in Sources */,
 				AB6C0A481E0E156F00B4DB24 /* TBDReachability.m in Sources */,
 				ABB9F5F21DB00D42008A2A00 /* TBDSoundcloud.m in Sources */,
