@@ -122,13 +122,15 @@ NSString *const kLoadingCellIdentifier = @"loadingCell";
 	
 }
 -(void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-	// Dismiss Search Bar to allow user to cancel to home table view
-	self.searchController.active = false;
 	
 	// Todo: move space encoding to HTTPRequest Class
 	[self performSelectorInBackground:@selector(searchRequestWithKeyword:) withObject:[searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
 	
 	[self performSelectorOnMainThread:@selector(displayLoadingCell) withObject:nil waitUntilDone:NO];
+	
+	// Dismiss Search Bar to allow user to cancel to home table view
+	self.searchController.active = false;
+
 }
 
 #pragma mark - Search Methods
