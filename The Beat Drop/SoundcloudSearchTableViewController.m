@@ -122,7 +122,9 @@ NSString *const kLoadingCellIdentifier = @"loadingCell";
 	
 }
 -(void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-	NSLog(@"Searchbar: Search Button Clicked");
+	// Dismiss Search Bar to allow user to cancel to home table view
+	self.searchController.active = false;
+	
 	// Todo: move space encoding to HTTPRequest Class
 	[self performSelectorInBackground:@selector(searchRequestWithKeyword:) withObject:[searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
 	
@@ -153,8 +155,6 @@ NSString *const kLoadingCellIdentifier = @"loadingCell";
 	// Reload TableView will new Data
 	[self.tableView reloadData];
 	
-	// Dismiss Search Controller
-	self.searchController.active = false;
 }
 
 -(void) displayLoadingCell {
