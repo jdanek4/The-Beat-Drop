@@ -13,6 +13,7 @@
 #import "TBDHTTPRequest.h"
 #import "TBDWaveformView.h"
 #import "TBDUserDefaults.h"
+#import "TBDFeaturedTracks.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -35,7 +36,6 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 - (void) viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
 }
 
 -(void) viewDidAppear:(BOOL)animated {
@@ -59,7 +59,6 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 }
 
 -(void) giveTrackForEditing:(TBDTrack *)track {
-	NSLog(@"Editing: %@", track);
 	self.editingMode = true;
 	[self setupUIForTrack:track andOnCompletion:^{
 		
@@ -67,7 +66,7 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 }
 
 -(void) giveTrackForPlaying:(TBDTrack *)track {
-	NSLog(@"Playing: %@", track);
+	[TBDFeaturedTracks LogTrackPlay:track.trackID];
 	self.editingMode = false;
 	[self setupUIForTrack:track andOnCompletion:^{
 		// Get Remote Control Signals

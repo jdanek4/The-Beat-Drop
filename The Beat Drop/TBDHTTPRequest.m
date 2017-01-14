@@ -53,7 +53,7 @@
 	
 	if([responseCode statusCode] != 200){
 		
-		handler(NULL);
+		handler([@"Error" dataUsingEncoding:NSUTF8StringEncoding]);
 		
 	}else {
 		

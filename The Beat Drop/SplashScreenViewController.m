@@ -10,6 +10,7 @@
 #import "HomeTableViewController.h"
 #import "TBDFileIO.h"
 #import "TBDUserDefaults.h"
+#import "TBDFeaturedTracks.h"
 
 @interface SplashScreenViewController ()
 
@@ -25,6 +26,11 @@
 		// First Time Launching - Show tutorial Screen
 		// Todo: Create Tutorial pages
 	}
+	
+	// Load Featured Tracks
+	[TBDFeaturedTracks GetFeaturedTracksAndOnCompletion:^(NSArray *array) {
+		//Tracks Received and Stored as static variable in class
+	}];
 	
 	if([TBDFileIO DoesFileExist]){
 		// Ensure Playability of Saved Songs

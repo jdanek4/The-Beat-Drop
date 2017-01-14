@@ -13,6 +13,7 @@
 #import "TBDHTTPRequest.h"
 #import "HomeTableViewController.h"
 #import "LoadingTableViewCell.h"
+#import "TBDFeaturedTracks.h"
 
 @interface SoundcloudSearchTableViewController (){
 	NSMutableArray *trackArray;
@@ -52,7 +53,8 @@ NSString *const kLoadingCellIdentifier = @"loadingCell";
 	self.loading = false;
 	self.noresults = false;
 	
-	// TODO: Implement Featured Track List
+	// Get Featured Track List
+	[self performSelectorInBackground:@selector(getFeaturedTracksAndOnCompletion) withObject:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -138,6 +140,17 @@ NSString *const kLoadingCellIdentifier = @"loadingCell";
 -(void) searchRequestWithKeyword:(NSString *)keyword {
 	[TBDSoundcloud GetSearchResultsForQuery:keyword OnCompletion:^(NSArray *array) {
 		[self performSelectorOnMainThread:@selector(updateTableDataWith:) withObject:array waitUntilDone:NO];
+	}];
+}
+
+#pragma mark - Featured tracks
+
+-(void) getFeaturedTracksAndOnCompletion{
+	[TBDFeaturedTracks GetFeaturedTracksAndOnCompletion:^(NSArray *array) {
+		if ([trackArray count] == 0) {
+			trackArray = [array mutableCopy];
+			[self.tableView reloadData];
+		}
 	}];
 }
 

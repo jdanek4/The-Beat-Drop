@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AB0109421DDBAD4700D88D1F /* TrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0109401DDBAD4700D88D1F /* TrackTableViewCell.m */; };
 		AB0109431DDBAD4700D88D1F /* TrackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB0109411DDBAD4700D88D1F /* TrackTableViewCell.xib */; };
+		AB172F7E1E2AC12B00041F8F /* TBDFeaturedTracks.m in Sources */ = {isa = PBXBuildFile; fileRef = AB172F7D1E2AC12B00041F8F /* TBDFeaturedTracks.m */; };
 		AB57F0CE1E0E19210091B0CD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AB57F0CD1E0E19210091B0CD /* Reachability.m */; };
 		AB64F72D1DAE8512002BC4F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB64F72C1DAE8512002BC4F0 /* main.m */; };
 		AB64F7301DAE8512002BC4F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB64F72F1DAE8512002BC4F0 /* AppDelegate.m */; };
@@ -58,6 +59,8 @@
 		AB01093F1DDBAD4700D88D1F /* TrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackTableViewCell.h; sourceTree = "<group>"; };
 		AB0109401DDBAD4700D88D1F /* TrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackTableViewCell.m; sourceTree = "<group>"; };
 		AB0109411DDBAD4700D88D1F /* TrackTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackTableViewCell.xib; sourceTree = "<group>"; };
+		AB172F7C1E2AC12B00041F8F /* TBDFeaturedTracks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDFeaturedTracks.h; sourceTree = "<group>"; };
+		AB172F7D1E2AC12B00041F8F /* TBDFeaturedTracks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDFeaturedTracks.m; sourceTree = "<group>"; };
 		AB57F0CC1E0E19210091B0CD /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		AB57F0CD1E0E19210091B0CD /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		AB64F7281DAE8512002BC4F0 /* The Beat Drop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Beat Drop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +139,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB172F7B1E2AC0F400041F8F /* Freatured Tracks API */ = {
+			isa = PBXGroup;
+			children = (
+				AB172F7C1E2AC12B00041F8F /* TBDFeaturedTracks.h */,
+				AB172F7D1E2AC12B00041F8F /* TBDFeaturedTracks.m */,
+			);
+			name = "Freatured Tracks API";
+			sourceTree = "<group>";
+		};
 		AB64F71F1DAE8512002BC4F0 = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +177,7 @@
 				AB9131941DB320780038BCAF /* Categories */,
 				AB9131861DB2FB510038BCAF /* Data Obejcts */,
 				ABB9F5EF1DB00D23008A2A00 /* Soundcloud API */,
+				AB172F7B1E2AC0F400041F8F /* Freatured Tracks API */,
 				AB64F75E1DAE8517002BC4F0 /* Web API */,
 				ABAE26361DBAFFA500AC83DF /* View Controllers */,
 				AB64F72E1DAE8512002BC4F0 /* AppDelegate.h */,
@@ -560,6 +573,7 @@
 				ABAE263C1DBB006F00AC83DF /* HomeTableViewController.m in Sources */,
 				AB64F72D1DAE8512002BC4F0 /* main.m in Sources */,
 				AB91318E1DB2FB820038BCAF /* TBDTrack.m in Sources */,
+				AB172F7E1E2AC12B00041F8F /* TBDFeaturedTracks.m in Sources */,
 				AB6C0A481E0E156F00B4DB24 /* TBDReachability.m in Sources */,
 				ABB9F5F21DB00D42008A2A00 /* TBDSoundcloud.m in Sources */,
 			);
