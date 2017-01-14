@@ -33,6 +33,8 @@
 		ABB3170F1E27E9CA00DE4CD3 /* TBDUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB3170E1E27E9CA00DE4CD3 /* TBDUserDefaults.m */; };
 		ABB9F5F21DB00D42008A2A00 /* TBDSoundcloud.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB9F5F11DB00D42008A2A00 /* TBDSoundcloud.m */; };
 		ABB9F5F41DB00D7C008A2A00 /* SoundcloudTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ABB9F5F31DB00D7C008A2A00 /* SoundcloudTest.m */; };
+		ABE8D1AC1E29A0C100E91017 /* LoadingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABE8D1AA1E29A0C100E91017 /* LoadingTableViewCell.m */; };
+		ABE8D1AD1E29A0C100E91017 /* LoadingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE8D1AB1E29A0C100E91017 /* LoadingTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,9 @@
 		ABB9F5F01DB00D42008A2A00 /* TBDSoundcloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBDSoundcloud.h; sourceTree = "<group>"; };
 		ABB9F5F11DB00D42008A2A00 /* TBDSoundcloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBDSoundcloud.m; sourceTree = "<group>"; };
 		ABB9F5F31DB00D7C008A2A00 /* SoundcloudTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundcloudTest.m; sourceTree = "<group>"; };
+		ABE8D1A91E29A0C100E91017 /* LoadingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingTableViewCell.h; sourceTree = "<group>"; };
+		ABE8D1AA1E29A0C100E91017 /* LoadingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingTableViewCell.m; sourceTree = "<group>"; };
+		ABE8D1AB1E29A0C100E91017 /* LoadingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,6 +329,7 @@
 		ABAE26381DBB002300AC83DF /* SoundcloudSearch */ = {
 			isa = PBXGroup;
 			children = (
+				ABE8D1A81E29A0A100E91017 /* LoadingTableViewCell */,
 				ABAE263D1DBB008300AC83DF /* SoundcloudSearchTableViewController.h */,
 				ABAE263E1DBB008300AC83DF /* SoundcloudSearchTableViewController.m */,
 			);
@@ -386,6 +392,16 @@
 				ABB3170A1E27D27C00DE4CD3 /* SettingsViewController.m */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		ABE8D1A81E29A0A100E91017 /* LoadingTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				ABE8D1A91E29A0C100E91017 /* LoadingTableViewCell.h */,
+				ABE8D1AA1E29A0C100E91017 /* LoadingTableViewCell.m */,
+				ABE8D1AB1E29A0C100E91017 /* LoadingTableViewCell.xib */,
+			);
+			name = LoadingTableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -498,6 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB64F73B1DAE8512002BC4F0 /* LaunchScreen.storyboard in Resources */,
+				ABE8D1AD1E29A0C100E91017 /* LoadingTableViewCell.xib in Resources */,
 				AB64F7381DAE8512002BC4F0 /* Assets.xcassets in Resources */,
 				AB64F7361DAE8512002BC4F0 /* Main.storyboard in Resources */,
 				AB0109431DDBAD4700D88D1F /* TrackTableViewCell.xib in Resources */,
@@ -527,6 +544,7 @@
 			files = (
 				AB9131931DB2FFEB0038BCAF /* TBDUser.m in Sources */,
 				AB0109421DDBAD4700D88D1F /* TrackTableViewCell.m in Sources */,
+				ABE8D1AC1E29A0C100E91017 /* LoadingTableViewCell.m in Sources */,
 				AB8D75041DCADDE2005EA6CB /* TBDFileIO.m in Sources */,
 				ABB3170B1E27D27C00DE4CD3 /* SettingsViewController.m in Sources */,
 				ABAE26421DBB00A400AC83DF /* DropPlayerViewController.m in Sources */,

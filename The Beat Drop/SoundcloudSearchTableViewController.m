@@ -12,14 +12,19 @@
 #import "TBDSoundcloud.h"
 #import "TBDHTTPRequest.h"
 #import "HomeTableViewController.h"
+#import "LoadingTableViewCell.h"
 
 @interface SoundcloudSearchTableViewController (){
 	NSMutableArray *trackArray;
 }
 
+@property (nonatomic,assign) BOOL loading;
+@property (nonatomic,assign) BOOL noresults;
+
 @end
 
-NSString *const cellIdentifier = @"trackCell";
+NSString *const kTrackCellIdentifier = @"trackCell";
+NSString *const kLoadingCellIdentifier = @"loadingCell";
 
 @implementation SoundcloudSearchTableViewController
 
@@ -40,7 +45,12 @@ NSString *const cellIdentifier = @"trackCell";
 	self.definesPresentationContext = YES;
 	
 	// Register Custom TableViewCell to be used as Reuseable cell
-	[self.tableView registerNib:[UINib nibWithNibName:@"TrackTableViewCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
+	[self.tableView registerNib:[UINib nibWithNibName:@"TrackTableViewCell" bundle:nil] forCellReuseIdentifier:kTrackCellIdentifier];
+	[self.tableView registerNib:[UINib nibWithNibName:@"LoadingTableViewCell" bundle:nil] forCellReuseIdentifier:kLoadingCellIdentifier];
+	
+	// Set property's defualt values
+	self.loading = false;
+	self.noresults = false;
 	
 	// TODO: Implement Featured Track List
 }
@@ -57,38 +67,53 @@ NSString *const cellIdentifier = @"trackCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [trackArray count];
+	return (self.loading || self.noresults) ? 1 : [trackArray count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	TrackTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-
-	// Get Pointer for Track associated with Specific Cell
-	TBDTrack *track = [trackArray objectAtIndex:indexPath.row];
-	
-	// Set Cell's Labels and image to track data
-	cell.trackTitle.text = [track name];
-	cell.trackArtist.text = [track artist];
-	
-	// Request Track's artwork from soundcloud. Leave image blank until request returns a value
-	cell.trackArtwork.image = nil;
-	
-	[TBDHTTPRequest GetRequestForImageFromURL:[track getSamllArtworkURL] CompletionHandler:^(UIImage *image) {
-		if(image.size.width > 0){
-			// Image received
-			cell.trackArtwork.image = image;
+	if (self.loading || self.noresults) {
+		LoadingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLoadingCellIdentifier];
+		
+		if (self.loading){
+			[cell.activityIndicator setHidden:false];
+			[cell.activityIndicator performSelectorOnMainThread:@selector(startAnimating) withObject:nil waitUntilDone:NO];
+			[cell.noResultsFoundLabel setHidden:true];
 		}else {
-			// Image not received
-			// Usually due to no artwork on soundcloud
-			// Set to TBD placeholder
-			cell.trackArtwork.image = [UIImage imageNamed:@"Artwork"];
+			[cell.activityIndicator performSelectorOnMainThread:@selector(stopAnimating) withObject:nil waitUntilDone:NO];
+			[cell.activityIndicator setHidden:true];
+			[cell.noResultsFoundLabel setHidden:false];
 		}
-	}];
+		
+		return cell;
+	}else {
+		TrackTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTrackCellIdentifier];
+		
+		// Get Pointer for Track associated with Specific Cell
+		TBDTrack *track = [trackArray objectAtIndex:indexPath.row];
+		
+		// Set Cell's Labels and image to track data
+		cell.trackTitle.text = [track name];
+		cell.trackArtist.text = [track artist];
+		
+		// Request Track's artwork from soundcloud. Leave image blank until request returns a value
+		cell.trackArtwork.image = nil;
+		
+		[TBDHTTPRequest GetRequestForImageFromURL:[track getSamllArtworkURL] CompletionHandler:^(UIImage *image) {
+			if(image.size.width > 0){
+				// Image received
+				cell.trackArtwork.image = image;
+			}else {
+				// Image not received
+				// Usually due to no artwork on soundcloud
+				// Set to TBD placeholder
+				cell.trackArtwork.image = [UIImage imageNamed:@"Artwork"];
+			}
+		}];
+		return cell;
+	}
 	
-	
-	return cell;
+	return NULL;
 }
 
 #pragma mark - SearchBar
@@ -100,9 +125,8 @@ NSString *const cellIdentifier = @"trackCell";
 	NSLog(@"Searchbar: Search Button Clicked");
 	// Todo: move space encoding to HTTPRequest Class
 	[self performSelectorInBackground:@selector(searchRequestWithKeyword:) withObject:[searchBar.text stringByReplacingOccurrencesOfString:@" " withString:@"%20"]];
-}
--(void) searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-	NSLog(@"Searchbar: Text Did End Editing");
+	
+	[self performSelectorOnMainThread:@selector(displayLoadingCell) withObject:nil waitUntilDone:NO];
 }
 
 #pragma mark - Search Methods
@@ -119,6 +143,13 @@ NSString *const cellIdentifier = @"trackCell";
 	// Replace Current Table Data with Newly Recived Search Data
 	trackArray = [newData copy];
 	
+	// If no results dispaly no results found label
+	self.loading = false;
+	if ([trackArray count] == 0) {
+		self.noresults = true;
+	}else {
+		self.noresults = false;
+	}
 	// Reload TableView will new Data
 	[self.tableView reloadData];
 	
@@ -126,6 +157,13 @@ NSString *const cellIdentifier = @"trackCell";
 	self.searchController.active = false;
 }
 
+-(void) displayLoadingCell {
+	// Set loading property to true
+	self.loading = true;
+	
+	// Call reload to display loading indicator
+	[self.tableView reloadData];
+}
 #pragma mark - Navigation
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
