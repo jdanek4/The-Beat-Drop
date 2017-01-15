@@ -20,6 +20,26 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="The Beat Drop" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6y-i9-NuK">
+                                <rect key="frame" x="16" y="24" width="343" height="57"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="An Open Source App by Jonathan Danek" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="78k-6e-6Tv">
+                                <rect key="frame" x="41" y="620" width="293" height="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="v6y-i9-NuK" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="5" id="32i-5e-sSS"/>
+                            <constraint firstItem="78k-6e-6Tv" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="SLr-vf-HIb"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="78k-6e-6Tv" secondAttribute="bottom" constant="24" id="TYN-Lr-94I"/>
+                            <constraint firstItem="v6y-i9-NuK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="u4A-9Q-viP"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>

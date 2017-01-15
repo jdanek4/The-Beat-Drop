@@ -29,8 +29,6 @@
 	
 	[self.enforceHiResArtworkButton setOn:[TBDUserDefaults GetEnforceHiResImageSetting]];
 	
-	
-	NSLog(@"%d", [TBDUserDefaults GetDropBuildUpTime]);
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,7 +8,7 @@
 
 #import "TBDUserDefaults.h"
 
-NSString *const kFirstTimeLaunching = @"first";
+NSString *const kFirstTimeLaunching = @"first2";
 NSString *const kDropBuildupTime = @"drop_buildup";
 NSString *const kEnforceHiResArtwork = @"enforce_highres";
 
