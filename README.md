@@ -10,4 +10,4 @@ The Beat Drop is currently available on the iOS App Store free of charge. This o
 ###History Log:
 
 ####Version 2.0: Commit ad506e5
-######Uploaded to App store - Will be avaiblabe as soon apple approves app
+######Uploaded to App store - Will be avaiblabe as soon apple approves
