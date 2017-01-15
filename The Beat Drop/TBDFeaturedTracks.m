@@ -40,7 +40,7 @@ static NSArray *kFeaturedTracks;
 }
 
 +(void) LogTrackPlay:(int)trackID {
-	[TBDHTTPRequest GetRequestForDataFromURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%d", kTrackLog, trackID]] CompletionHandler:^(NSData *data) {
+	[TBDHTTPRequest GetRequestForDataFromURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%d/%@", kTrackLog, trackID, [[UIDevice currentDevice] identifierForVendor]]] CompletionHandler:^(NSData *data) {
 		
 	}];
 }

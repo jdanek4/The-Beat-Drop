@@ -221,9 +221,9 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 		// All Done Loading
 		[self performSelectorOnMainThread:@selector(loadingEnded) withObject:nil waitUntilDone:false];
 	}else {
-		if(self.timeout >= 100){
-			// 10 Seconds has gone by and still not done loading
-			// Probable Connection Issues
+		if(self.timeout >= 150){
+			// 15 Seconds has gone by and still not done loading
+			// Probable Connection Issues or song too large
 			// Revert to Home Screen and Display Error
 			[self exitPlayerWithStatus:ERROR_TIMEOUT];
 		}else {
