@@ -153,8 +153,8 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 	MPNowPlayingInfoCenter *infoCenter = [MPNowPlayingInfoCenter defaultCenter];
 	infoCenter.nowPlayingInfo =
 	[NSDictionary dictionaryWithObjectsAndKeys:
-	 self.trackTitleLabel.text, MPMediaItemPropertyTitle,
-	 self.trackArtistLabel.text, MPMediaItemPropertyArtist,
+	 self.audioPlayer.track.name, MPMediaItemPropertyTitle,
+	 self.audioPlayer.track.artist, MPMediaItemPropertyArtist,
 	 [[MPMediaItemArtwork alloc] initWithBoundsSize:self.trackArtWorkImageView.bounds.size requestHandler:^UIImage * _Nonnull(CGSize size) {
 		return self.trackArtWorkImageView.image;
 	}], MPMediaItemPropertyArtwork,nil];
