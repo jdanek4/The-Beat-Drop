@@ -38,7 +38,7 @@ NSString *const kTutorialLabel[] = {
 	}];
 
 	
-	if ([TBDUserDefaults IsFirstTimeLaunching] || true) {
+	if ([TBDUserDefaults IsFirstTimeLaunching]) {
 		// First Time Launching - Show tutorial Screen
 		tutorial = 1;
 		[self performSelector:@selector(fadeOutLoadingUI) withObject:nil afterDelay:3.0f];

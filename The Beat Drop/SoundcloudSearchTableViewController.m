@@ -21,6 +21,7 @@
 
 @property (nonatomic,assign) BOOL loading;
 @property (nonatomic,assign) BOOL noresults;
+@property (nonatomic,assign) BOOL featured;
 
 @end
 
@@ -52,6 +53,7 @@ NSString *const kLoadingCellIdentifier = @"loadingCell";
 	// Set property's defualt values
 	self.loading = false;
 	self.noresults = false;
+	self.featured = true;
 	
 	// Get Featured Track List
 	[self performSelectorInBackground:@selector(getFeaturedTracksAndOnCompletion) withObject:nil];
@@ -118,6 +120,14 @@ NSString *const kLoadingCellIdentifier = @"loadingCell";
 	return NULL;
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	if (self.featured) {
+		return @"Featured Tracks";
+	}else {
+		return @"";
+	}
+}
+
 #pragma mark - SearchBar
 
 -(void) updateSearchResultsForSearchController:(UISearchController *)searchController{
@@ -148,8 +158,11 @@ NSString *const kLoadingCellIdentifier = @"loadingCell";
 -(void) getFeaturedTracksAndOnCompletion{
 	[TBDFeaturedTracks GetFeaturedTracksAndOnCompletion:^(NSArray *array) {
 		if ([trackArray count] == 0) {
+			self.featured = true;
 			trackArray = [array mutableCopy];
 			[self.tableView reloadData];
+		}else {
+			self.featured = false;
 		}
 	}];
 }
