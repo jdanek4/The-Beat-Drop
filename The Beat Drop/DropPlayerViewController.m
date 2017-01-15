@@ -149,7 +149,7 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 
 #pragma mark - Background Control Handlers
 
--(void) setupNowPlayingInfo {
+-(void) setupNowPlayingInfoWithImage:(UIImage *)image {
 	MPNowPlayingInfoCenter *infoCenter = [MPNowPlayingInfoCenter defaultCenter];
 	infoCenter.nowPlayingInfo =
 	[NSDictionary dictionaryWithObjectsAndKeys:
@@ -273,10 +273,12 @@ NSString *const kPauseButtonAssetName = @"PauseButton";
 			// Artwork Not Found - Display TBD Default Placeholder
 			self.backgroundArtworkImageView.image =	[UIImage imageNamed:@"Artwork"];
 			self.trackArtWorkImageView.image =	[UIImage imageNamed:@"Artwork"];
+			image = [UIImage imageNamed:@"Artwork"];
 		}
 		if (!self.editingMode) {
-			[self setupNowPlayingInfo]; // Background Controls Information
+			[self performSelectorOnMainThread:@selector(setupNowPlayingInfoWithImage:) withObject:image waitUntilDone:NO]; // Background Controls Information
 		}
+
 	}];
 }
 
