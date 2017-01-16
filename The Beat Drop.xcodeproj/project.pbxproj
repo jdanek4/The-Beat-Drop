@@ -729,7 +729,7 @@
 				INFOPLIST_FILE = "The Beat Drop/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "me.danek.The-Beat-Drop";
+				PRODUCT_BUNDLE_IDENTIFIER = me.danek.drop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -743,7 +743,7 @@
 				INFOPLIST_FILE = "The Beat Drop/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "me.danek.The-Beat-Drop";
+				PRODUCT_BUNDLE_IDENTIFIER = me.danek.drop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
