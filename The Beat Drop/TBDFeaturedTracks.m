@@ -10,8 +10,8 @@
 #import "TBDSoundcloud.h"
 #import "TBDHTTPRequest.h"
 
-NSString *const kFeaturedTracksLink = @"https://danek.me/Api/TheBeatDrop/index.php/featured";
-NSString *const kTrackLog = @"https://danek.me/Api/TheBeatDrop/index.php/log/";
+NSString *const kFeaturedTracksLink = @"http://danek.me:3030/featured";
+NSString *const kTrackLog = @"http://danek.me:3030/log/";
 
 static NSArray *kFeaturedTracks;
 
@@ -23,7 +23,7 @@ static NSArray *kFeaturedTracks;
 	}
 	[TBDHTTPRequest GetRequestForStringFromURL:[NSURL URLWithString:kFeaturedTracksLink] CompletionHandler:^(NSString *response) {
 		
-		NSArray *trackIDs = [response componentsSeparatedByString:@"<br>"];
+		NSArray *trackIDs = [response componentsSeparatedByString:@"\n"];
 		NSMutableArray *tracks = [NSMutableArray array];
 		
 		for (NSString *tID in trackIDs) {
