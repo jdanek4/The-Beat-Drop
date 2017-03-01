@@ -10,8 +10,8 @@
 #import "TBDSoundcloud.h"
 #import "TBDHTTPRequest.h"
 
-NSString *const kFeaturedTracksLink = @"http://danek.me:3030/featured";
-NSString *const kTrackLog = @"http://danek.me:3030/log/";
+NSString *const kFeaturedTracksLink = @"http://thebeatdopapi.us-east-1.elasticbeanstalk.com/featured";
+NSString *const kTrackLog = @"http://thebeatdopapi.us-east-1.elasticbeanstalk.com/log/";
 
 static NSArray *kFeaturedTracks;
 
