@@ -27,7 +27,7 @@ static NSArray *kFeaturedTracks;
 		NSMutableArray *tracks = [NSMutableArray array];
 		
 		for (NSString *tID in trackIDs) {
-			if ([tID isEqualToString:@""]) {
+			if ([tID isEqualToString:@""] || [tID isEqualToString:@"Error"]) {
 				continue;
 			}
 			[TBDSoundcloud GetTrackInfoFromID:[tID intValue] OnCompletion:^(TBDTrack *track) {
