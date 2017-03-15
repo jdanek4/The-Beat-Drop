@@ -10,6 +10,7 @@
 
 @interface TBDFeaturedTracks : NSObject
 
+// Static Methods
 +(void) GetFeaturedTracksAndOnCompletion:(void (^)(NSArray *array))handler;
 +(void) LogTrackPlay:(int)trackID;
 
